@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 708 1536">
+  <defs>
+    <linearGradient id="top" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#0b5f68"/><stop offset="1" stop-color="#0c2632"/>
+    </linearGradient>
+  </defs>
+  <rect width="708" height="1536" fill="#0b121b"/>
+  <rect width="708" height="420" fill="url(#top)"/>
+  <text x="36" y="130" fill="#f6fbff" font-family="Manrope, Arial" font-size="58" font-weight="800">Новый курс</text>
+  <text x="36" y="186" fill="#bed0d7" font-family="Manrope, Arial" font-size="27" font-weight="700">Расписание приема и напоминания</text>
+  <rect x="36" y="270" width="636" height="112" rx="34" fill="#172733"/>
+  <circle cx="92" cy="326" r="32" fill="#eafaff"/>
+  <path d="M80 326h24M92 314v24" stroke="#22c8d1" stroke-width="8" stroke-linecap="round"/>
+  <text x="142" y="318" fill="#f5fbff" font-family="Manrope, Arial" font-size="31" font-weight="800">Небилет</text>
+  <text x="142" y="354" fill="#9cadb8" font-family="Manrope, Arial" font-size="23" font-weight="700">Таблетки · 5 мг</text>
+  <rect x="36" y="470" width="636" height="162" rx="38" fill="#111c26"/>
+  <text x="70" y="532" fill="#f5fbff" font-family="Manrope, Arial" font-size="32" font-weight="800">Период курса</text>
+  <rect x="70" y="562" width="250" height="48" rx="18" fill="#1c303d"/>
+  <text x="100" y="595" fill="#22c8d1" font-family="Manrope, Arial" font-size="24" font-weight="800">29 июн</text>
+  <rect x="350" y="562" width="250" height="48" rx="18" fill="#1c303d"/>
+  <text x="380" y="595" fill="#22c8d1" font-family="Manrope, Arial" font-size="24" font-weight="800">15 июл</text>
+  <rect x="36" y="662" width="636" height="220" rx="38" fill="#111c26"/>
+  <text x="70" y="724" fill="#f5fbff" font-family="Manrope, Arial" font-size="32" font-weight="800">Время приема</text>
+  <g font-family="Manrope, Arial" font-weight="800" font-size="27">
+    <rect x="70" y="762" width="148" height="70" rx="28" fill="#22c8d1"/><text x="106" y="807" fill="#06242a">09:00</text>
+    <rect x="238" y="762" width="148" height="70" rx="28" fill="#1c303d"/><text x="274" y="807" fill="#d8e6ec">15:00</text>
+    <rect x="406" y="762" width="148" height="70" rx="28" fill="#1c303d"/><text x="442" y="807" fill="#d8e6ec">21:00</text>
+  </g>
+  <rect x="36" y="912" width="636" height="242" rx="38" fill="#111c26"/>
+  <text x="70" y="974" fill="#f5fbff" font-family="Manrope, Arial" font-size="32" font-weight="800">Повторять</text>
+  <g font-family="Manrope, Arial" font-weight="800" font-size="24">
+    <rect x="70" y="1016" width="72" height="72" rx="24" fill="#22c8d1"/><text x="91" y="1061" fill="#06242a">Пн</text>
+    <rect x="154" y="1016" width="72" height="72" rx="24" fill="#22c8d1"/><text x="177" y="1061" fill="#06242a">Вт</text>
+    <rect x="238" y="1016" width="72" height="72" rx="24" fill="#22c8d1"/><text x="258" y="1061" fill="#06242a">Ср</text>
+    <rect x="322" y="1016" width="72" height="72" rx="24" fill="#1c303d"/><text x="344" y="1061" fill="#c1ced6">Чт</text>
+    <rect x="406" y="1016" width="72" height="72" rx="24" fill="#1c303d"/><text x="428" y="1061" fill="#c1ced6">Пт</text>
+  </g>
+  <rect x="70" y="1236" width="568" height="94" rx="42" fill="#22c8d1"/>
+  <text x="240" y="1294" fill="#06242a" font-family="Manrope, Arial" font-size="32" font-weight="900">Сохранить курс</text>
+</svg>

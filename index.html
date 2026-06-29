@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="МедДом — мобильное приложение для домашней аптечки, курсов приема лекарств, сроков годности и показателей здоровья."
+    />
+    <title>МедДом — домашняя аптечка под контролем</title>
+    <link rel="icon" href="assets/app-logo.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260629-1544" />
+  </head>
+  <body>
+    <header class="site-header" data-header>
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="#download">Скачать</a>
+        <a href="agreements.html">Соглашения</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero-carousel" id="screens" aria-labelledby="hero-title">
+        <div class="carousel-copy">
+          <article class="carousel-slide is-active" data-carousel-slide="0">
+            <h1 id="hero-title">МедДом</h1>
+            <h2>Домашняя аптечка под контролем</h2>
+            <p class="hero__lead">
+              Главный экран показывает все препараты домашней аптечки, остатки,
+              категории и сроки годности в одном спокойном каталоге.
+            </p>
+            <div class="hero__badges" aria-label="Преимущества">
+              <span>Сроки годности</span>
+              <span>Напоминания</span>
+              <span>Динамика здоровья</span>
+            </div>
+            <div class="hero__actions">
+              <a class="button button--primary" href="#download">Получить уведомление</a>
+              <a class="button button--ghost" href="#features">Возможности</a>
+            </div>
+          </article>
+          <article class="carousel-slide" data-carousel-slide="1">
+            <p class="eyebrow">Карточка препарата</p>
+            <h2>Вся информация о лекарстве в одном месте</h2>
+            <p>
+              Форма, дозировка, количество в упаковке, общий остаток, срок годности
+              и место хранения видны сразу. Из карточки можно быстро добавить прием.
+            </p>
+          </article>
+          <article class="carousel-slide" data-carousel-slide="2">
+            <p class="eyebrow">Быстрое добавление</p>
+            <h2>Сканируйте код прямо с упаковки</h2>
+            <p>
+              Наведите камеру на штрихкод, QR или DataMatrix. МедДом считает код
+              и поможет быстрее заполнить карточку препарата без лишнего ручного ввода.
+            </p>
+          </article>
+          <article class="carousel-slide" data-carousel-slide="3">
+            <p class="eyebrow">Прием</p>
+            <h2>Курсы лечения с расписанием и напоминаниями</h2>
+            <p>
+              Выберите препарат, период курса, дни недели и время приема.
+              Приложение напомнит о лекарстве и покажет прогресс курса.
+            </p>
+          </article>
+          <article class="carousel-slide" data-carousel-slide="4">
+            <p class="eyebrow">Запасы</p>
+            <h2>Видно, что заканчивается и что пора заменить</h2>
+            <p>
+              МедДом подсвечивает препараты с малым остатком, истекающим сроком
+              годности и уже просроченные позиции.
+            </p>
+          </article>
+          <article class="carousel-slide" data-carousel-slide="5">
+            <p class="eyebrow">Показатели</p>
+            <h2>Наглядная динамика давления, пульса и веса</h2>
+            <p>
+              Записывайте показатели здоровья и смотрите график за нужный период.
+              Так легче заметить изменения и показать историю врачу.
+            </p>
+          </article>
+          <article class="carousel-slide" data-carousel-slide="6">
+            <p class="eyebrow">Виджеты</p>
+            <h2>Быстрый учет прямо с домашнего экрана</h2>
+            <p>
+              Виджеты помогают добавить показатели давления и проверить статус курса
+              приема без открытия приложения. Важные действия остаются на расстоянии одного касания.
+            </p>
+          </article>
+          <div class="carousel-controls" aria-label="Переключение сценариев">
+            <button class="carousel-dot is-active" type="button" data-carousel-dot="0" aria-label="Аптечка"></button>
+            <button class="carousel-dot" type="button" data-carousel-dot="1" aria-label="Карточка препарата"></button>
+            <button class="carousel-dot" type="button" data-carousel-dot="2" aria-label="Сканирование"></button>
+            <button class="carousel-dot" type="button" data-carousel-dot="3" aria-label="Курс приема"></button>
+            <button class="carousel-dot" type="button" data-carousel-dot="4" aria-label="Запасы"></button>
+            <button class="carousel-dot" type="button" data-carousel-dot="5" aria-label="Показатели"></button>
+            <button class="carousel-dot" type="button" data-carousel-dot="6" aria-label="Виджеты"></button>
+          </div>
+        </div>
+
+        <div class="carousel-phone">
+          <figure class="phone phone--carousel">
+            <span class="phone__button phone__button--left" aria-hidden="true"></span>
+            <span class="phone__button phone__button--right" aria-hidden="true"></span>
+            <span class="phone__notch" aria-hidden="true"></span>
+            <img
+              class="phone__screen carousel-screen is-active"
+              src="assets/app-pharmacy.png"
+              alt="Каталог препаратов домашней аптечки"
+              data-screen="0"
+            />
+            <img
+              class="phone__screen carousel-screen"
+              src="assets/app-drug-detail.png"
+              alt="Карточка препарата с дозировкой, остатком и сроком годности"
+              data-screen="1"
+            />
+            <img
+              class="phone__screen carousel-screen"
+              src="assets/app-scan.svg"
+              alt="Сканирование штрихкода, QR или DataMatrix кода"
+              data-screen="2"
+            />
+            <img
+              class="phone__screen carousel-screen"
+              src="assets/app-course-add.svg"
+              alt="Добавление курса приема препарата"
+              data-screen="3"
+            />
+            <img
+              class="phone__screen carousel-screen"
+              src="assets/app-expiry.svg"
+              alt="Контроль остатков и сроков годности"
+              data-screen="4"
+            />
+            <img
+              class="phone__screen carousel-screen"
+              src="assets/app-health-full.png"
+              alt="Показатели здоровья и график динамики"
+              data-screen="5"
+            />
+            <img
+              class="phone__screen carousel-screen"
+              src="assets/app-widgets.png"
+              alt="Виджеты МедДом для давления и курсов приема"
+              data-screen="6"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="store-section" id="download" aria-labelledby="download-title">
+        <div class="section__intro">
+          <p class="eyebrow">Скачать</p>
+          <h2 id="download-title">Установите МедДом из удобного магазина</h2>
+          <p>
+            Выберите платформу. Если релиз еще проходит модерацию, плитка приведет
+            на страницу ожидания или будет обновлена после публикации.
+          </p>
+        </div>
+        <div class="store-grid">
+          <a class="store-tile store-tile--disabled" href="#" aria-label="App Store скоро будет доступен" aria-disabled="true">
+            <img class="store-tile__logo" src="assets/store-appstore.png" alt="" />
+            <span>
+              <strong>App Store</strong>
+              <small>Скоро будет доступно</small>
+            </span>
+          </a>
+          <a class="store-tile" href="#" aria-label="Скачать МедДом в RuStore">
+            <img class="store-tile__logo" src="assets/store-rustore.png" alt="" />
+            <span>
+              <strong>RuStore</strong>
+              <small>Для Android в России</small>
+            </span>
+          </a>
+          <a class="store-tile store-tile--disabled" href="#" aria-label="Google Play скоро будет доступен" aria-disabled="true">
+            <img class="store-tile__logo" src="assets/store-googleplay.png" alt="" />
+            <span>
+              <strong>Google Play</strong>
+              <small>Скоро будет доступно</small>
+            </span>
+          </a>
+        </div>
+      </section>
+
+      <section class="stats" aria-label="Ключевые сценарии">
+        <div>
+          <strong>Аптечка</strong>
+          <span>Каталог препаратов, остатки и категории</span>
+        </div>
+        <div>
+          <strong>Прием</strong>
+          <span>Курсы, расписание и напоминания</span>
+        </div>
+        <div>
+          <strong>Здоровье</strong>
+          <span>Давление, пульс, вес и динамика</span>
+        </div>
+      </section>
+
+      <section class="section" id="features" aria-labelledby="features-title">
+        <div class="section__intro">
+          <p class="eyebrow">Возможности</p>
+          <h2 id="features-title">Все важное по лекарствам без хаоса в заметках</h2>
+          <p>
+            Приложение помогает навести порядок в домашней аптечке и превращает
+            разрозненные напоминания в понятный ежедневный процесс.
+          </p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span class="feature-card__icon" aria-hidden="true">▦</span>
+            <h3>Удобный каталог</h3>
+            <p>Добавляйте препараты домашней аптечки, дозировки, формы выпуска, количество и срок годности.</p>
+            <strong>Все препараты под рукой</strong>
+          </article>
+          <article class="feature-card">
+            <span class="feature-card__icon feature-card__icon--warm" aria-hidden="true">⏱</span>
+            <h3>Курсы приема</h3>
+            <p>Создавайте расписание лечения и получайте напоминания, чтобы не пропускать прием.</p>
+            <strong>По дням и времени</strong>
+          </article>
+          <article class="feature-card">
+            <span class="feature-card__icon feature-card__icon--green" aria-hidden="true">↗</span>
+            <h3>Показатели здоровья</h3>
+            <p>Сохраняйте давление, пульс, вес и самочувствие, отслеживайте динамику по периодам.</p>
+            <strong>История измерений</strong>
+          </article>
+          <article class="feature-card">
+            <span class="feature-card__icon feature-card__icon--coral" aria-hidden="true">!</span>
+            <h3>Контроль запасов</h3>
+            <p>Видите, что заканчивается, что истекает, и какие препараты пора обновить.</p>
+            <strong>Меньше просрочки</strong>
+          </article>
+        </div>
+      </section>
+
+      <section class="contacts" id="contacts" aria-labelledby="contacts-title">
+        <div>
+          <h2 id="contacts-title">Остались вопросы?</h2>
+          <p>Напишите нам.</p>
+        </div>
+        <div class="contact-panel">
+          <a class="contact-mail" href="mailto:hello@meddom.app">hello@meddom.app</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>© 2026 МедДом</span>
+      <a href="mailto:hello@meddom.app">hello@meddom.app</a>
+    </footer>
+
+    <script src="script.js?v=20260629-1546"></script>
+  </body>
+</html>

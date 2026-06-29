@@ -1,0 +1,22 @@
+[
+  {
+    "id": "terms",
+    "title": "Пользовательское соглашение",
+    "file": "legal/terms.md"
+  },
+  {
+    "id": "privacy-policy",
+    "title": "Политика обработки персональных данных",
+    "file": "legal/privacy-policy.md"
+  },
+  {
+    "id": "personal-data-consent",
+    "title": "Согласие на обработку персональных данных",
+    "file": "legal/personal-data-consent.md"
+  },
+  {
+    "id": "health-data-consent",
+    "title": "Согласие на обработку данных о здоровье",
+    "file": "legal/health-data-consent.md"
+  }
+]
