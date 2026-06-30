@@ -1,11 +1,24 @@
 const METRIKA_COUNTER_ID = 110289623;
 const COOKIE_CONSENT_KEY = "medhome_cookie_consent";
+const COOKIE_CONSENT_VERSION = "2026-06-30";
 const COOKIE_CONSENT_ACCEPTED = "accepted";
 const COOKIE_CONSENT_DECLINED = "declined";
+let metrikaLoaded = false;
 
 const getCookieConsent = () => {
   try {
-    return window.localStorage.getItem(COOKIE_CONSENT_KEY);
+    const savedConsent = window.localStorage.getItem(COOKIE_CONSENT_KEY);
+    if (!savedConsent) return null;
+
+    if (savedConsent === COOKIE_CONSENT_ACCEPTED || savedConsent === COOKIE_CONSENT_DECLINED) {
+      return {
+        value: savedConsent,
+        version: null,
+        updatedAt: null,
+      };
+    }
+
+    return JSON.parse(savedConsent);
   } catch {
     return null;
   }
@@ -13,14 +26,24 @@ const getCookieConsent = () => {
 
 const setCookieConsent = (value) => {
   try {
-    window.localStorage.setItem(COOKIE_CONSENT_KEY, value);
+    window.localStorage.setItem(
+      COOKIE_CONSENT_KEY,
+      JSON.stringify({
+        value,
+        version: COOKIE_CONSENT_VERSION,
+        updatedAt: new Date().toISOString(),
+      })
+    );
   } catch {
     return;
   }
 };
 
 const loadYandexMetrika = () => {
-  if (window.ym) return;
+  if (metrikaLoaded || window.ym) {
+    metrikaLoaded = true;
+    return;
+  }
 
   (function (m, e, t, r, i, k, a) {
     m[i] =
@@ -41,38 +64,56 @@ const loadYandexMetrika = () => {
     ssr: true,
     webvisor: true,
     clickmap: true,
-    ecommerce: "dataLayer",
     referrer: document.referrer,
     url: location.href,
     accurateTrackBounce: true,
     trackLinks: true,
   });
+
+  metrikaLoaded = true;
 };
 
 const initCookieConsent = () => {
   const banner = document.querySelector("[data-cookie-consent]");
   const acceptButton = document.querySelector("[data-cookie-accept]");
   const declineButton = document.querySelector("[data-cookie-decline]");
-  const consent = getCookieConsent();
+  const settingsButtons = [...document.querySelectorAll("[data-cookie-settings]")];
+  let consent = getCookieConsent()?.value ?? null;
+
+  const showBanner = () => {
+    if (banner) banner.hidden = false;
+  };
+
+  const hideBanner = () => {
+    if (banner) banner.hidden = true;
+  };
 
   if (consent === COOKIE_CONSENT_ACCEPTED) {
     loadYandexMetrika();
-    return;
+  } else if (banner && consent !== COOKIE_CONSENT_DECLINED) {
+    showBanner();
   }
 
-  if (!banner || consent === COOKIE_CONSENT_DECLINED) return;
-
-  banner.hidden = false;
+  settingsButtons.forEach((button) => {
+    button.addEventListener("click", showBanner);
+  });
 
   acceptButton?.addEventListener("click", () => {
     setCookieConsent(COOKIE_CONSENT_ACCEPTED);
-    banner.hidden = true;
+    consent = COOKIE_CONSENT_ACCEPTED;
+    hideBanner();
     loadYandexMetrika();
   });
 
   declineButton?.addEventListener("click", () => {
+    const shouldReload = consent === COOKIE_CONSENT_ACCEPTED && metrikaLoaded;
     setCookieConsent(COOKIE_CONSENT_DECLINED);
-    banner.hidden = true;
+    consent = COOKIE_CONSENT_DECLINED;
+    hideBanner();
+
+    if (shouldReload) {
+      window.location.reload();
+    }
   });
 };
 
