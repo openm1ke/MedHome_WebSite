@@ -281,6 +281,82 @@ h3 {
   color: var(--text);
 }
 
+.cookie-consent {
+  position: fixed;
+  right: max(16px, calc((100vw - 1180px) / 2));
+  bottom: 18px;
+  left: max(16px, calc((100vw - 1180px) / 2));
+  z-index: 50;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 18px;
+  align-items: center;
+  border: 1px solid rgba(224, 251, 255, 0.2);
+  border-radius: 18px;
+  padding: 18px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04)),
+    rgba(7, 19, 26, 0.9);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.42);
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
+  backdrop-filter: blur(22px) saturate(150%);
+}
+
+.cookie-consent[hidden] {
+  display: none;
+}
+
+.cookie-consent__content {
+  display: grid;
+  gap: 6px;
+}
+
+.cookie-consent__content strong {
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.cookie-consent__content p {
+  max-width: 760px;
+  margin: 0;
+  color: #c9d6dd;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.cookie-consent__content a {
+  color: #dffefd;
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-color: rgba(223, 254, 253, 0.42);
+  text-underline-offset: 3px;
+}
+
+.cookie-consent__actions {
+  display: flex;
+  gap: 10px;
+}
+
+.cookie-consent__button {
+  min-height: 44px;
+  border: 0;
+  border-radius: 12px;
+  padding: 0 16px;
+  background: linear-gradient(135deg, #eafffb, var(--cyan) 52%, #16a3b3);
+  color: #06242a;
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.cookie-consent__button--ghost {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+}
+
 .phone {
   position: relative;
   width: min(34vw, 372px);
@@ -1076,6 +1152,25 @@ h3 {
 
   .button {
     width: 100%;
+  }
+
+  .cookie-consent {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    padding: 16px;
+  }
+
+  .cookie-consent__actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cookie-consent__button {
+    width: 100%;
+    padding-inline: 10px;
   }
 
   .stats {
