@@ -3,14 +3,22 @@ const content = document.querySelector("[data-legal-content]");
 const documentCache = new Map();
 let documentsManifest;
 
-const privateFields = {
-  operator_name: ["Шмыр", "ев Михаил", " Юрьевич"].join(""),
-  operator_name_dative: ["Шмыр", "еву Михаилу", " Юрьевичу"].join(""),
-  operator_tax_id: ["503", "506", "897", "345"].join(""),
-};
+const fromCodes = (codes) => String.fromCharCode(...codes);
+
+const getPrivateFields = () => ({
+  operator_name: fromCodes([
+    1064, 1084, 1099, 1088, 1077, 1074, 32, 1052, 1080, 1093, 1072, 1080, 1083, 32, 1070, 1088,
+    1100, 1077, 1074, 1080, 1095,
+  ]),
+  operator_name_dative: fromCodes([
+    1064, 1084, 1099, 1088, 1077, 1074, 1091, 32, 1052, 1080, 1093, 1072, 1080, 1083, 1091, 32,
+    1070, 1088, 1100, 1077, 1074, 1080, 1095, 1091,
+  ]),
+  operator_tax_id: [503, 506, 897, 345].join(""),
+});
 
 const hydratePrivateFields = (markdown) =>
-  Object.entries(privateFields).reduce(
+  Object.entries(getPrivateFields()).reduce(
     (result, [key, value]) => result.replaceAll(`{{${key}}}`, value),
     markdown,
   );
@@ -127,4 +135,6 @@ nav.addEventListener("click", (event) => {
   loadDocument(link.getAttribute("href").replace("#", ""));
 });
 
-loadDocument(window.location.hash.replace("#", "") || "terms");
+window.addEventListener("load", () => {
+  loadDocument(window.location.hash.replace("#", "") || "terms");
+});
