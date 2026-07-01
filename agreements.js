@@ -3,6 +3,18 @@ const content = document.querySelector("[data-legal-content]");
 const documentCache = new Map();
 let documentsManifest;
 
+const privateFields = {
+  operator_name: ["Шмыр", "ев Михаил", " Юрьевич"].join(""),
+  operator_name_dative: ["Шмыр", "еву Михаилу", " Юрьевичу"].join(""),
+  operator_tax_id: ["503", "506", "897", "345"].join(""),
+};
+
+const hydratePrivateFields = (markdown) =>
+  Object.entries(privateFields).reduce(
+    (result, [key, value]) => result.replaceAll(`{{${key}}}`, value),
+    markdown,
+  );
+
 const escapeHtml = (value) =>
   value
     .replaceAll("&", "&amp;")
@@ -103,7 +115,7 @@ const loadDocument = async (id) => {
       }));
 
   await new Promise((resolve) => window.setTimeout(resolve, 180));
-  content.innerHTML = renderMarkdown(markdown);
+  content.innerHTML = renderMarkdown(hydratePrivateFields(markdown));
   requestAnimationFrame(() => content.classList.remove("is-switching"));
 };
 

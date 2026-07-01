@@ -1,4 +1,5 @@
 User-agent: *
-Allow: /
+Disallow: /agreements.html
+Disallow: /legal/
 
 Sitemap: https://mymedhome.ru/sitemap.xml
