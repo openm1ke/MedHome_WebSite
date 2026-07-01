@@ -22,6 +22,7 @@
 }
 
 html {
+  scroll-padding-top: 104px;
   scroll-behavior: smooth;
 }
 
@@ -604,6 +605,12 @@ h3 {
 
 .feature-card {
   position: relative;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto;
+  column-gap: 16px;
+  row-gap: 18px;
+  align-items: center;
   min-height: 320px;
   border: 1px solid var(--line);
   border-radius: 24px;
@@ -629,11 +636,23 @@ h3 {
   color: var(--muted);
 }
 
+.feature-card h3,
+.feature-card p,
 .feature-card strong {
-  position: absolute;
-  right: 24px;
-  bottom: 22px;
-  left: 24px;
+  grid-column: 1 / -1;
+}
+
+.feature-card h3 {
+  grid-column: 2;
+  margin-bottom: 0;
+}
+
+.feature-card p {
+  align-self: start;
+}
+
+.feature-card strong {
+  align-self: end;
   color: #dce9ee;
   font-size: 13px;
 }
@@ -642,7 +661,7 @@ h3 {
   display: grid;
   width: 52px;
   height: 52px;
-  margin-bottom: 34px;
+  margin-bottom: 0;
   place-items: center;
   border-radius: 16px;
   background: rgba(31, 196, 205, 0.14);
@@ -664,6 +683,26 @@ h3 {
 .feature-card__icon--coral {
   background: rgba(240, 99, 115, 0.14);
   color: var(--coral);
+}
+
+.feature-card__icon--blue {
+  background: rgba(77, 125, 255, 0.15);
+  color: #7fa2ff;
+}
+
+.feature-card__icon--violet {
+  background: rgba(179, 136, 255, 0.15);
+  color: #c5a8ff;
+}
+
+.feature-card__icon--lime {
+  background: rgba(178, 235, 87, 0.14);
+  color: #b9ec62;
+}
+
+.feature-card__icon--pink {
+  background: rgba(255, 128, 171, 0.15);
+  color: #ff93bd;
 }
 
 .story {
@@ -780,14 +819,16 @@ h3 {
 
 .carousel-controls {
   display: flex;
+  flex-wrap: nowrap;
   align-self: end;
-  gap: 10px;
+  gap: 8px;
   margin-top: 34px;
+  max-width: 100%;
 }
 
 .carousel-dot {
-  width: 42px;
-  height: 8px;
+  width: 30px;
+  height: 7px;
   border: 0;
   border-radius: 999px;
   padding: 0;
@@ -797,7 +838,7 @@ h3 {
 }
 
 .carousel-dot.is-active {
-  width: 72px;
+  width: 52px;
   background: var(--cyan);
   box-shadow: 0 0 24px rgba(34, 200, 209, 0.3);
 }
@@ -1274,10 +1315,6 @@ h3 {
     min-height: auto;
   }
 
-  .feature-card__icon {
-    margin-bottom: 24px;
-  }
-
   .phone--carousel {
     width: min(68vw, 252px);
     transform: none;
@@ -1307,16 +1344,17 @@ h3 {
   }
 
   .carousel-controls {
+    gap: 4px;
     margin-top: 22px;
     align-self: start;
   }
 
   .carousel-dot {
-    width: 32px;
+    width: 18px;
   }
 
   .carousel-dot.is-active {
-    width: 54px;
+    width: 30px;
   }
 
   .site-footer {

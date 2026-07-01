@@ -1,43 +1,75 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 708 1536">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 708 1536" role="img" aria-label="Сканирование штрихкода на упаковке препарата">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <linearGradient id="cameraBg" x1="0" y1="0" x2="1" y2="1">
       <stop stop-color="#0a5b64"/>
-      <stop offset=".44" stop-color="#102b36"/>
-      <stop offset="1" stop-color="#0b121b"/>
+      <stop offset=".48" stop-color="#102b36"/>
+      <stop offset="1" stop-color="#071018"/>
     </linearGradient>
-    <linearGradient id="pack" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#f3fbff"/>
-      <stop offset="1" stop-color="#cdeff2"/>
+    <radialGradient id="lensLight" cx=".44" cy=".38" r=".62">
+      <stop stop-color="#2bd6dc" stop-opacity=".24"/>
+      <stop offset=".55" stop-color="#2bd6dc" stop-opacity=".06"/>
+      <stop offset="1" stop-color="#071018" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="packBody" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#f6feff"/>
+      <stop offset=".48" stop-color="#dff6f8"/>
+      <stop offset="1" stop-color="#c2e9ef"/>
     </linearGradient>
+    <linearGradient id="packAccent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#b7f5f0"/>
+      <stop offset="1" stop-color="#d9e3ff"/>
+    </linearGradient>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="28" stdDeviation="34" flood-color="#02070b" flood-opacity=".36"/>
+    </filter>
     <filter id="scanGlow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="9" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
   </defs>
-  <rect width="708" height="1536" fill="#0b121b"/>
-  <rect width="708" height="440" fill="url(#bg)"/>
-  <text x="36" y="130" fill="#f6fbff" font-family="Manrope, Arial" font-size="56" font-weight="800">Сканирование</text>
-  <text x="36" y="186" fill="#bed0d7" font-family="Manrope, Arial" font-size="27" font-weight="700">Наведите камеру на код упаковки</text>
-  <rect x="36" y="486" width="636" height="742" rx="52" fill="#111c26" stroke="#2b4652" stroke-width="2"/>
-  <rect x="88" y="582" width="532" height="350" rx="34" fill="url(#pack)"/>
-  <rect x="118" y="616" width="108" height="108" rx="30" fill="#dff8ea"/>
-  <path d="M152 668h40M172 648v40" stroke="#22c8d1" stroke-width="10" stroke-linecap="round"/>
-  <text x="252" y="650" fill="#12313a" font-family="Manrope, Arial" font-size="38" font-weight="900">Небилет</text>
-  <text x="252" y="696" fill="#4c6870" font-family="Manrope, Arial" font-size="25" font-weight="800">Таблетки · 5 мг</text>
-  <text x="120" y="800" fill="#44626b" font-family="Manrope, Arial" font-size="24" font-weight="800">28 таблеток</text>
-  <rect x="392" y="746" width="178" height="118" rx="14" fill="#f8ffff" stroke="#b9d7de" stroke-width="2"/>
-  <g fill="#102b36">
-    <rect x="414" y="768" width="10" height="74"/><rect x="432" y="768" width="5" height="74"/><rect x="444" y="768" width="14" height="74"/><rect x="466" y="768" width="6" height="74"/><rect x="482" y="768" width="18" height="74"/><rect x="510" y="768" width="8" height="74"/><rect x="530" y="768" width="12" height="74"/>
+
+  <rect width="708" height="1536" fill="#071018"/>
+  <rect width="708" height="1536" fill="url(#cameraBg)"/>
+  <rect width="708" height="1536" fill="url(#lensLight)"/>
+
+  <g opacity=".16">
+    <circle cx="86" cy="156" r="56" fill="#ffffff"/>
+    <circle cx="624" cy="1280" r="126" fill="#22c8d1"/>
+    <circle cx="110" cy="1218" r="92" fill="#4d7dff"/>
   </g>
-  <text x="404" y="884" fill="#607982" font-family="Manrope, Arial" font-size="16" font-weight="800">DATA MATRIX</text>
-  <rect x="78" y="552" width="552" height="410" rx="44" fill="none" stroke="#22c8d1" stroke-width="5" stroke-dasharray="18 18" opacity=".75"/>
-  <path d="M96 676v-86h86M526 590h86v86M612 838v86h-86M182 924H96v-86" fill="none" stroke="#eafffb" stroke-width="10" stroke-linecap="round" filter="url(#scanGlow)"/>
-  <line x1="102" y1="746" x2="606" y2="746" stroke="#22c8d1" stroke-width="5" filter="url(#scanGlow)"/>
-  <rect x="82" y="1012" width="544" height="116" rx="34" fill="#172733"/>
-  <circle cx="136" cy="1070" r="28" fill="#22c8d1"/>
-  <path d="M124 1070l8 9 18-22" fill="none" stroke="#06242a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="186" y="1058" fill="#f5fbff" font-family="Manrope, Arial" font-size="29" font-weight="900">Код найден</text>
-  <text x="186" y="1096" fill="#98a9b3" font-family="Manrope, Arial" font-size="22" font-weight="700">Данные готовы для карточки препарата</text>
-  <rect x="70" y="1282" width="568" height="88" rx="42" fill="#22c8d1"/>
-  <text x="214" y="1337" fill="#06242a" font-family="Manrope, Arial" font-size="31" font-weight="900">Добавить лекарство</text>
+
+  <rect x="48" y="196" width="612" height="1144" rx="56" fill="#0b141d" opacity=".5"/>
+  <rect x="66" y="214" width="576" height="1108" rx="48" fill="none" stroke="#dffcff" stroke-opacity=".14" stroke-width="2"/>
+
+  <g filter="url(#softShadow)" transform="rotate(-5 354 746)">
+    <rect x="104" y="548" width="500" height="396" rx="38" fill="url(#packBody)"/>
+    <rect x="104" y="548" width="500" height="122" rx="38" fill="url(#packAccent)"/>
+    <path d="M104 632h500" stroke="#b7d8df" stroke-width="2" opacity=".55"/>
+    <rect x="148" y="712" width="150" height="150" rx="34" fill="#e9fbf5"/>
+    <path d="M188 787h70M223 752v70" stroke="#22c8d1" stroke-width="16" stroke-linecap="round"/>
+    <circle cx="494" cy="622" r="44" fill="#22c8d1" opacity=".9"/>
+    <path d="M472 622h44M494 600v44" stroke="#ffffff" stroke-width="11" stroke-linecap="round"/>
+    <rect x="330" y="734" width="210" height="104" rx="18" fill="#f7ffff" stroke="#bedae0" stroke-width="2"/>
+  </g>
+
+  <rect x="222" y="661" width="264" height="214" rx="24" fill="#f9ffff" stroke="#e3fbff" stroke-width="4"/>
+  <g fill="#071018">
+    <rect x="248" y="697" width="12" height="132"/>
+    <rect x="269" y="697" width="6" height="132"/>
+    <rect x="284" y="697" width="18" height="132"/>
+    <rect x="314" y="697" width="8" height="132"/>
+    <rect x="332" y="697" width="24" height="132"/>
+    <rect x="368" y="697" width="7" height="132"/>
+    <rect x="388" y="697" width="15" height="132"/>
+    <rect x="418" y="697" width="9" height="132"/>
+    <rect x="444" y="697" width="16" height="132"/>
+  </g>
+
+  <rect x="120" y="506" width="468" height="480" rx="44" fill="none" stroke="#22c8d1" stroke-width="4" stroke-dasharray="18 18" opacity=".72"/>
+  <path d="M138 638v-92h92M478 546h92v92M570 854v92h-92M230 946h-92v-92" fill="none" stroke="#f2ffff" stroke-width="11" stroke-linecap="round" filter="url(#scanGlow)"/>
+  <line x1="154" y1="768" x2="554" y2="768" stroke="#22c8d1" stroke-width="6" filter="url(#scanGlow)"/>
+  <circle cx="354" cy="768" r="172" fill="none" stroke="#ffffff" stroke-opacity=".08" stroke-width="2"/>
 </svg>
