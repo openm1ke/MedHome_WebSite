@@ -1,3 +1,4 @@
+(() => {
 const nav = document.querySelector("[data-legal-nav]");
 const content = document.querySelector("[data-legal-content]");
 const documentCache = new Map();
@@ -138,3 +139,4 @@ nav.addEventListener("click", (event) => {
 window.addEventListener("load", () => {
   loadDocument(window.location.hash.replace("#", "") || "terms");
 });
+})();

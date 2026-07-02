@@ -1,3 +1,4 @@
+(() => {
 const header = document.querySelector("[data-header]");
 const navToggle = document.querySelector("[data-nav-toggle]");
 const primaryNav = document.querySelector("[data-nav]");
@@ -97,3 +98,4 @@ if (carouselSlides.length) {
 
   startCarousel();
 }
+})();
