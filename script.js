@@ -1,6 +1,6 @@
 const header = document.querySelector("[data-header]");
 const navToggle = document.querySelector("[data-nav-toggle]");
-const nav = document.querySelector("[data-nav]");
+const primaryNav = document.querySelector("[data-nav]");
 const carouselSlides = [...document.querySelectorAll("[data-carousel-slide]")];
 const carouselScreens = [...document.querySelectorAll(".carousel-screen")];
 const carouselDots = [...document.querySelectorAll("[data-carousel-dot]")];
@@ -29,7 +29,7 @@ navToggle?.addEventListener("click", () => {
   setMenuOpen(!isOpen);
 });
 
-nav?.querySelectorAll("a").forEach((link) => {
+primaryNav?.querySelectorAll("a").forEach((link) => {
   link.addEventListener("click", () => setMenuOpen(false));
 });
 
