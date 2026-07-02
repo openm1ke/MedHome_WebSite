@@ -38,7 +38,7 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260701-0003" />
+    <link rel="stylesheet" href="styles.css?v=20260702-0001" />
   </head>
   <body>
     <header class="site-header" data-header>
@@ -46,7 +46,12 @@
         <img src="assets/app-logo-transparent.png" alt="" aria-hidden="true" />
         <span>МедДом</span>
       </a>
-      <nav class="nav" aria-label="Основная навигация">
+      <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Открыть меню" data-nav-toggle>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+      <nav class="nav" id="primary-nav" aria-label="Основная навигация" data-nav>
         <a href="#download">Скачать</a>
         <a href="#features">Возможности</a>
         <a href="agreements.html">Соглашения</a>
@@ -68,10 +73,6 @@
               <span>Сроки годности</span>
               <span>Напоминания</span>
               <span>Динамика здоровья</span>
-            </div>
-            <div class="hero__actions">
-              <a class="button button--primary" href="#download">Получить уведомление</a>
-              <a class="button button--ghost" href="#features">Возможности</a>
             </div>
           </article>
           <article class="carousel-slide" data-carousel-slide="1">
@@ -388,7 +389,7 @@
       </div>
     </section>
 
-    <script src="script.js?v=20260629-1546"></script>
+    <script src="script.js?v=20260702-0001"></script>
     <script src="analytics.js?v=20260630-0003"></script>
   </body>
 </html>

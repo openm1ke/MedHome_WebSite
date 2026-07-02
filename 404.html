@@ -30,11 +30,20 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260630-0002" />
+    <link rel="stylesheet" href="styles.css?v=20260702-0001" />
   </head>
   <body>
-    <header class="site-header">
-      <nav class="nav" aria-label="Основная навигация">
+    <header class="site-header" data-header>
+      <a class="site-brand" href="index.html#top" aria-label="МедДом — на главную">
+        <img src="assets/app-logo-transparent.png" alt="" aria-hidden="true" />
+        <span>МедДом</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Открыть меню" data-nav-toggle>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+      <nav class="nav" id="primary-nav" aria-label="Основная навигация" data-nav>
         <a href="index.html#download">Скачать</a>
         <a href="agreements.html">Соглашения</a>
         <a href="index.html#contacts">Контакты</a>
@@ -79,6 +88,7 @@
       </div>
     </section>
 
+    <script src="script.js?v=20260702-0001"></script>
     <script src="analytics.js?v=20260630-0003"></script>
   </body>
 </html>

@@ -88,7 +88,7 @@ a {
   top: 12px;
   z-index: 20;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 32px;
   width: min(1180px, calc(100% - 32px));
@@ -159,6 +159,56 @@ a {
   color: var(--muted);
   font-size: 14px;
   font-weight: 700;
+}
+
+.nav-toggle {
+  position: relative;
+  z-index: 2;
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(224, 251, 255, 0.18);
+  border-radius: 14px;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  position: absolute;
+  left: 12px;
+  width: 18px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transition: transform 0.2s ease, opacity 0.2s ease, top 0.2s ease;
+}
+
+.nav-toggle span:nth-child(1) {
+  top: 14px;
+}
+
+.nav-toggle span:nth-child(2) {
+  top: 21px;
+}
+
+.nav-toggle span:nth-child(3) {
+  top: 28px;
+}
+
+.site-header.is-menu-open .nav-toggle span:nth-child(1) {
+  top: 21px;
+  transform: rotate(45deg);
+}
+
+.site-header.is-menu-open .nav-toggle span:nth-child(2) {
+  opacity: 0;
+}
+
+.site-header.is-menu-open .nav-toggle span:nth-child(3) {
+  top: 21px;
+  transform: rotate(-45deg);
 }
 
 .nav a {
@@ -313,6 +363,10 @@ h3 {
   grid-template-columns: 1fr auto;
   gap: 18px;
   align-items: center;
+  width: auto;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100svh - 36px);
+  overflow-y: auto;
   border: 1px solid rgba(224, 251, 255, 0.2);
   border-radius: 18px;
   padding: 18px;
@@ -331,6 +385,7 @@ h3 {
 .cookie-consent__content {
   display: grid;
   gap: 6px;
+  min-width: 0;
 }
 
 .cookie-consent__content strong {
@@ -344,11 +399,13 @@ h3 {
   color: #c9d6dd;
   font-size: 14px;
   line-height: 1.55;
+  overflow-wrap: anywhere;
 }
 
 .cookie-consent__content a {
   color: #dffefd;
   font-weight: 800;
+  overflow-wrap: anywhere;
   text-decoration: underline;
   text-decoration-color: rgba(223, 254, 253, 0.42);
   text-underline-offset: 3px;
@@ -1228,19 +1285,62 @@ h3 {
   }
 
   .site-header {
+    grid-template-columns: auto auto;
+    justify-content: space-between;
     width: min(100% - 24px, 1180px);
     min-height: 66px;
     margin-bottom: -78px;
     padding-inline: 12px;
   }
 
-  .site-brand span {
-    display: none;
-  }
-
   .site-brand img {
     width: 38px;
     height: 38px;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    left: auto;
+    display: grid;
+    justify-items: stretch;
+    width: max-content;
+    min-width: 178px;
+    max-width: calc(100vw - 24px);
+    border: 1px solid rgba(224, 251, 255, 0.16);
+    border-radius: 16px;
+    padding: 6px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.035)),
+      rgba(7, 19, 26, 0.94);
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.36);
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+    visibility: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    backdrop-filter: blur(20px) saturate(150%);
+  }
+
+  .site-header.is-menu-open .nav {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    visibility: visible;
+  }
+
+  .nav a {
+    border-radius: 10px;
+    padding: 8px 12px;
+    text-align: left;
+    white-space: nowrap;
   }
 
   .stats,
@@ -1276,6 +1376,8 @@ h3 {
     right: 12px;
     bottom: 12px;
     left: 12px;
+    max-width: calc(100vw - 24px);
+    max-height: calc(100svh - 24px);
     padding: 16px;
   }
 
@@ -1287,6 +1389,12 @@ h3 {
   .cookie-consent__button {
     width: 100%;
     padding-inline: 10px;
+  }
+
+  @supports not (height: 100svh) {
+    .cookie-consent {
+      max-height: calc(100vh - 24px);
+    }
   }
 
   .stats {
@@ -1389,6 +1497,12 @@ h3 {
   .legal-page {
     width: calc(100% - 24px);
     padding-top: 132px;
+  }
+}
+
+@media (max-width: 380px) {
+  .cookie-consent__actions {
+    grid-template-columns: 1fr;
   }
 }
 
