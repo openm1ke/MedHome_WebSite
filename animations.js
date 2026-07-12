@@ -156,16 +156,42 @@
             return;
           }
 
-          const lines = introPlayed ? [] : splitTitleLines();
+          /* Сплит строк — только если Manrope 800 подтверждённо загружен,
+             иначе переносы «замораживаются» по метрикам fallback-шрифта.
+             Ждём document.fonts.ready не дольше 300мс, затем проверяем
+             через fonts.check(): если шрифт готов — построчная анимация;
+             если нет — H1 анимируется целиком (без сплита, без спанов),
+             и естественный перенос сохранится, когда шрифт всё же придёт. */
+          let cancelled = false;
           if (!introPlayed) {
-            initHeroIntro(lines);
+            const supportsFontCheck = !!(document.fonts && typeof document.fonts.check === "function");
+            const fontsReady = supportsFontCheck ? document.fonts.ready : Promise.resolve();
+            const timeout = new Promise((resolve) => window.setTimeout(resolve, 300));
+
+            Promise.race([fontsReady, timeout]).then(() => {
+              if (cancelled || introPlayed) return;
+              let manropeReady = false;
+              if (supportsFontCheck) {
+                try {
+                  manropeReady = document.fonts.check("800 16px Manrope");
+                } catch {
+                  manropeReady = false;
+                }
+              }
+              initHeroIntro(manropeReady ? splitTitleLines() : [heroTitle]);
+            });
           }
           initHeroCardFloat();
 
           const cleanupPointer = desktop && fine ? initHeroPointerEffect() : () => {};
 
           return () => {
+            cancelled = true;
             cleanupPointer();
+            /* intro мог быть создан асинхронно — matchMedia его не отслеживает */
+            const asyncTargets = [heroTitle, ...heroTitle.children, ...copySequence, phone, ...cards].filter(Boolean);
+            gsap.killTweensOf(asyncTargets);
+            gsap.set(asyncTargets, { clearProps: "all" });
             if (heroTitle.querySelector("span")) restoreTitle();
           };
         }
