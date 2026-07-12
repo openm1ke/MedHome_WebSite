@@ -16,11 +16,16 @@
   --amber-soft: #fbf1de;
   --coral: #b8434f;
   --coral-soft: #fae9eb;
+  --petrol: #10504b;
+  --petrol-deep: #092b29;
+  --ink-invert: #f2f7f5;
   --shadow: 0 12px 32px rgba(20, 42, 37, 0.1);
   --shadow-soft: 0 6px 18px rgba(20, 42, 37, 0.07);
   --radius-s: 12px;
   --radius-m: 20px;
   --radius-l: 28px;
+  /* Медицинский паттерн (адаптация из прежней версии сайта), переиспользуется через var() */
+  --med-pattern: url("data:image/svg+xml,%3Csvg width='300' height='300' viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230e6b66' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='44' cy='44' r='20'/%3E%3Cpath d='M30 58 58 30'/%3E%3Cpath d='M112 24h42a18 18 0 0 1 0 36h-42a18 18 0 0 1 0-36Z'/%3E%3Cpath d='M133 24v36'/%3E%3Cpath d='M222 24h28v48h-28zM218 24h36M222 72h28'/%3E%3Cpath d='M36 124h18v-18h18v18h18v18H72v18H54v-18H36z'/%3E%3Cpath d='M128 112c18 18 18 42 0 60-18-18-18-42 0-60Z'/%3E%3Cpath d='M218 118h36a18 18 0 0 1 0 36h-36a18 18 0 0 1 0-36Z'/%3E%3Cpath d='M236 118v36'/%3E%3Cpath d='M36 224h44v28H36z'/%3E%3Cpath d='M112 216h42v50h-42zM112 232h42'/%3E%3Cpath d='M214 232h50M224 218l-20 28 24 8'/%3E%3Ccircle cx='98' cy='96' r='4'/%3E%3Ccircle cx='108' cy='106' r='4'/%3E%3Ccircle cx='88' cy='108' r='4'/%3E%3Cpath d='M246 204v42M230 220h32M238 212h16'/%3E%3C/g%3E%3C/svg%3E");
   /* Legacy aliases (старые секции до этапа 7) */
   --text: var(--ink);
   --muted: var(--ink-soft);
@@ -268,14 +273,42 @@ h3 {
 /* ---------- Hero ---------- */
 
 .hero {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 6fr) minmax(340px, 5fr);
   gap: clamp(40px, 6vw, 96px);
   align-items: center;
-  width: min(1180px, calc(100% - 32px));
+  width: 100%;
   min-height: min(860px, 92svh);
-  margin: 0 auto 96px;
-  padding-top: 118px;
+  margin: 0;
+  padding: 118px max(16px, calc(50% - 590px)) 96px;
+}
+
+/* Мягкие teal/mint-градиенты hero (статичные) */
+.hero::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 82% 16%, rgba(14, 107, 102, 0.11), transparent 46%),
+    radial-gradient(circle at 4% 68%, rgba(46, 125, 91, 0.07), transparent 42%),
+    linear-gradient(180deg, rgba(223, 240, 236, 0.5), rgba(223, 240, 236, 0) 34%);
+  content: "";
+  pointer-events: none;
+}
+
+/* Медицинский паттерн: едва заметный, гаснет к низу секции */
+.hero::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: var(--med-pattern);
+  background-size: 240px 240px;
+  content: "";
+  opacity: 0.02;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(168deg, #000 0 34%, transparent 72%);
+  mask-image: linear-gradient(168deg, #000 0 34%, transparent 72%);
 }
 
 .hero__copy {
@@ -343,13 +376,17 @@ h3 {
   padding: 24px 0;
 }
 
+/* Локальная подложка за телефоном: телефон не «висит» на пустом листе */
 .hero__visual::before {
   position: absolute;
-  inset: 8% 0 4% 0;
+  inset: 6% 0 2% 0;
   z-index: 0;
   border-radius: 50%;
-  background: radial-gradient(circle at 50% 44%, var(--bg-wash), rgba(239, 245, 241, 0) 70%);
+  background:
+    radial-gradient(circle at 50% 44%, rgba(223, 240, 236, 0.9), rgba(223, 240, 236, 0) 66%),
+    radial-gradient(circle at 38% 70%, rgba(227, 242, 234, 0.6), rgba(227, 242, 234, 0) 55%);
   content: "";
+  pointer-events: none;
 }
 
 .phone-android {
@@ -471,8 +508,37 @@ h3 {
 /* ---------- Story: пять сценариев ---------- */
 
 .story {
-  width: min(1180px, calc(100% - 32px));
-  margin: 0 auto 110px;
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 88px max(16px, calc(50% - 590px)) 104px;
+}
+
+/* Секционный wash story + цветовое пятно за sticky-телефоном */
+.story::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle 560px at 82% 30%, rgba(223, 240, 236, 0.85), transparent 70%),
+    radial-gradient(circle 420px at 78% 74%, rgba(227, 242, 234, 0.55), transparent 68%),
+    linear-gradient(180deg, #edf3f0, #eaf1ed);
+  content: "";
+  pointer-events: none;
+}
+
+/* Паттерн только по краям секции, не под текстом */
+.story::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: var(--med-pattern);
+  background-size: 300px 300px;
+  content: "";
+  opacity: 0.025;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, #000 0 9%, transparent 22% 78%, #000 91% 100%);
+  mask-image: linear-gradient(90deg, #000 0 9%, transparent 22% 78%, #000 91% 100%);
 }
 
 .story__head {
@@ -1005,8 +1071,12 @@ h3 {
 /* --- Ещё в МедДом: асимметричная композиция --- */
 
 .extras {
-  width: min(1180px, calc(100% - 32px));
-  margin: 0 auto 116px;
+  width: 100%;
+  margin: 0;
+  padding: 96px max(16px, calc(50% - 590px)) 112px;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(223, 240, 236, 0.55), transparent 40%),
+    linear-gradient(180deg, var(--bg), #f0f5f2 78%);
 }
 
 .extras__grid {
@@ -1039,6 +1109,7 @@ h3 {
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius-m);
+  padding: 8px;
   background: var(--bg-wash);
 }
 
@@ -1046,8 +1117,27 @@ h3 {
   display: block;
   width: 100%;
   height: 100%;
+  border-radius: 12px;
   object-fit: cover;
   object-position: top;
+}
+
+/* Разные спокойные подложки изображений в единой палитре */
+.screen-tile--light {
+  background: var(--ok-soft);
+}
+
+.screen-tile--dark {
+  border-color: #24352f;
+  background: #16241f;
+}
+
+.extra__compact-stack .extra--compact:first-child .screen-tile {
+  background: var(--brand-soft);
+}
+
+.extra__compact-stack .extra--compact:last-child .screen-tile {
+  background: var(--amber-soft);
 }
 
 /* Горизонтальный блок: тема (во всю ширину, светлый + тёмный экран рядом) */
@@ -1085,6 +1175,11 @@ h3 {
 .extra--large .screen-tile--large {
   aspect-ratio: 4 / 3;
   border: 0;
+  border-radius: 0;
+  padding: 0;
+}
+
+.extra--large .screen-tile--large img {
   border-radius: 0;
 }
 
@@ -1125,11 +1220,18 @@ h3 {
 
 /* --- Скачать --- */
 
+/* Главный контрастный акцент страницы: тёмный petrol-фон со статичным radial */
 .download {
   display: grid;
-  gap: 16px;
-  width: min(1180px, calc(100% - 32px));
-  margin: 0 auto 116px;
+  gap: 24px;
+  width: 100%;
+  margin: 0;
+  padding: 88px max(16px, calc(50% - 590px));
+  background:
+    radial-gradient(circle at 84% 10%, rgba(94, 200, 190, 0.16), transparent 50%),
+    radial-gradient(circle at 6% 92%, rgba(46, 125, 91, 0.2), transparent 46%),
+    linear-gradient(155deg, var(--petrol), var(--petrol-deep) 74%);
+  color: var(--ink-invert);
 }
 
 .download__primary {
@@ -1137,15 +1239,12 @@ h3 {
   flex-wrap: wrap;
   align-items: center;
   gap: 20px;
-  border: 1px solid rgba(14, 107, 102, 0.18);
-  border-radius: var(--radius-l);
-  padding: clamp(24px, 3.6vw, 40px);
-  background: linear-gradient(135deg, var(--brand-soft), var(--bg-wash) 72%);
 }
 
 .download__logo {
   flex: none;
   border-radius: 12px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3);
 }
 
 .download__primary-copy {
@@ -1154,17 +1253,34 @@ h3 {
 }
 
 .download__primary-copy .eyebrow {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.14);
+  color: #bfe4de;
+}
+
+.download__primary-copy h2 {
+  color: var(--ink-invert);
 }
 
 .download__primary-copy p:not(.eyebrow) {
   margin: 6px 0 0;
-  color: var(--ink-soft);
+  color: rgba(242, 247, 245, 0.72);
   font-size: 15.5px;
 }
 
 .download__cta {
   flex: none;
+}
+
+/* Белая кнопка на тёмном — самый заметный элемент секции */
+.download .button--primary {
+  background: #ffffff;
+  color: var(--petrol-deep);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.32);
+}
+
+.download .button--primary:hover {
+  background: #e4f1ee;
+  transform: translateY(-1px);
 }
 
 .download__soon {
@@ -1180,10 +1296,10 @@ h3 {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  border: 1px dashed var(--line);
+  border: 1px dashed rgba(242, 247, 245, 0.28);
   border-radius: 999px;
   padding: 8px 16px 8px 10px;
-  color: var(--ink-soft);
+  color: rgba(242, 247, 245, 0.62);
   font-size: 14px;
   font-weight: 600;
 }
@@ -1191,21 +1307,30 @@ h3 {
 .download__soon-item img {
   width: 22px;
   height: 22px;
-  opacity: 0.55;
-  filter: grayscale(1);
+  border-radius: 6px;
+  opacity: 0.75;
+  filter: grayscale(0.5);
 }
 
 .download__soon-item small {
-  color: var(--ink-soft);
+  color: rgba(242, 247, 245, 0.55);
   font-weight: 700;
-  opacity: 0.75;
+}
+
+.download :focus-visible {
+  outline-color: #ffffff;
 }
 
 /* --- Приватность и доверие --- */
 
+/* Возврат к свету после тёмной download-секции, с мягкой деталью фона */
 .trust {
-  width: min(1180px, calc(100% - 32px));
-  margin: 0 auto 96px;
+  width: 100%;
+  margin: 0;
+  padding: 96px max(16px, calc(50% - 590px)) 72px;
+  background:
+    radial-gradient(circle at 8% 18%, rgba(227, 242, 234, 0.8), transparent 44%),
+    var(--bg);
 }
 
 .trust__list {
@@ -1267,10 +1392,10 @@ h3 {
   gap: 18px;
   align-items: center;
   justify-items: center;
-  width: min(1180px, calc(100% - 32px));
+  width: 100%;
   min-height: 380px;
-  margin: 0 auto;
-  padding: 84px 0 64px;
+  margin: 0;
+  padding: 84px max(16px, calc(50% - 590px)) 64px;
   text-align: center;
 }
 
@@ -1279,8 +1404,25 @@ h3 {
   inset: 24px 16%;
   z-index: -1;
   border-radius: 50%;
-  background: radial-gradient(circle at 50% 50%, var(--bg-wash), rgba(239, 245, 241, 0) 70%);
+  background:
+    radial-gradient(circle at 50% 46%, rgba(223, 240, 236, 0.9), rgba(223, 240, 236, 0) 62%),
+    radial-gradient(circle at 34% 68%, rgba(227, 242, 234, 0.5), rgba(227, 242, 234, 0) 52%);
   content: "";
+  pointer-events: none;
+}
+
+/* Едва заметное кольцо паттерна — финальный отголосок фоновой системы */
+.contacts::after {
+  position: absolute;
+  inset: 8% 18%;
+  z-index: -1;
+  background-image: var(--med-pattern);
+  background-size: 260px 260px;
+  content: "";
+  opacity: 0.025;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent 32%, #000 48% 60%, transparent 76%);
+  mask-image: radial-gradient(circle at 50% 50%, transparent 32%, #000 48% 60%, transparent 76%);
 }
 
 .contacts h2 {
@@ -1697,18 +1839,27 @@ h3 {
   }
 
   .hero,
+  .story,
   .extras,
   .download,
   .trust,
-  .contacts,
+  .contacts {
+    padding-inline: 12px;
+  }
+
   .site-footer {
     width: calc(100% - 24px);
   }
 
   .hero {
     gap: 34px;
-    margin-bottom: 72px;
     padding-top: 100px;
+    padding-bottom: 72px;
+  }
+
+  .story {
+    padding-top: 64px;
+    padding-bottom: 76px;
   }
 
   .hero__actions {
@@ -1751,10 +1902,19 @@ h3 {
     bottom: 9%;
   }
 
-  .extras,
-  .download,
+  .extras {
+    padding-top: 64px;
+    padding-bottom: 72px;
+  }
+
+  .download {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
   .trust {
-    margin-bottom: 64px;
+    padding-top: 64px;
+    padding-bottom: 48px;
   }
 
   .extras__grid {
@@ -1777,6 +1937,10 @@ h3 {
   .download__primary {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .download__primary-copy {
+    flex-basis: auto;
   }
 
   .download__cta {
