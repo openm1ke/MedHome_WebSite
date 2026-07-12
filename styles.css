@@ -300,6 +300,7 @@ h3 {
 }
 
 .hero__stores {
+  display: inline-block;
   color: var(--ink-soft);
   font-size: 14px;
   font-weight: 600;
