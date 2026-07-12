@@ -10,9 +10,9 @@
   --brand: #0e6b66;
   --brand-strong: #0a514d;
   --brand-soft: #dff0ec;
-  --ok: #2e7d5b;
+  --ok: #2c7857;
   --ok-soft: #e3f2ea;
-  --amber: #a66a0f;
+  --amber: #97600e;
   --amber-soft: #fbf1de;
   --coral: #b8434f;
   --coral-soft: #fae9eb;
@@ -65,6 +65,24 @@ a {
   outline: 2px solid var(--brand);
   outline-offset: 2px;
   border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -60px;
+  left: 12px;
+  z-index: 999;
+  border-radius: var(--radius-s);
+  padding: 12px 20px;
+  background: var(--brand);
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 12px;
 }
 
 /* ---------- Шапка ---------- */
@@ -1299,7 +1317,7 @@ h3 {
   border: 1px dashed rgba(242, 247, 245, 0.28);
   border-radius: 999px;
   padding: 8px 16px 8px 10px;
-  color: rgba(242, 247, 245, 0.62);
+  color: rgba(242, 247, 245, 0.68);
   font-size: 14px;
   font-weight: 600;
 }
@@ -1313,7 +1331,7 @@ h3 {
 }
 
 .download__soon-item small {
-  color: rgba(242, 247, 245, 0.55);
+  color: rgba(242, 247, 245, 0.72);
   font-weight: 700;
 }
 
