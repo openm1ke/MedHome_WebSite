@@ -345,7 +345,7 @@ h3 {
 
 .hero__visual::before {
   position: absolute;
-  inset: 8% -6% 4% -10%;
+  inset: 8% 0 4% 0;
   z-index: 0;
   border-radius: 50%;
   background: radial-gradient(circle at 50% 44%, var(--bg-wash), rgba(239, 245, 241, 0) 70%);
@@ -466,6 +466,204 @@ h3 {
 
 .float-card--stock .float-card__dot {
   background: var(--coral);
+}
+
+/* ---------- Story: пять сценариев ---------- */
+
+.story {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto 110px;
+}
+
+.story__head {
+  max-width: 720px;
+  margin-bottom: clamp(28px, 4vw, 48px);
+}
+
+.story__scenes {
+  display: grid;
+  gap: clamp(48px, 7vw, 72px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.scene {
+  max-width: 560px;
+}
+
+.scene__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 12px;
+  color: var(--brand-strong);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.scene__eyebrow::before {
+  width: 22px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--brand);
+  content: "";
+}
+
+.scene h3 {
+  margin-bottom: 12px;
+  font-size: clamp(24px, 2.6vw, 34px);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.scene__text {
+  margin-bottom: 18px;
+  color: var(--ink-soft);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.scene__screen {
+  margin: 0 0 18px;
+}
+
+.scene__screen img {
+  width: min(66vw, 260px);
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: #10161a;
+  box-shadow: var(--shadow);
+}
+
+.scene__status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+}
+
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  border-radius: 999px;
+  padding: 0 14px;
+  font-size: 13.5px;
+  font-weight: 700;
+}
+
+.status-chip--ok {
+  background: var(--ok-soft);
+  color: var(--ok);
+}
+
+.status-chip--brand {
+  background: var(--brand-soft);
+  color: var(--brand-strong);
+}
+
+.status-chip--amber {
+  background: var(--amber-soft);
+  color: var(--amber);
+}
+
+.status-chip--coral {
+  background: var(--coral-soft);
+  color: var(--coral);
+}
+
+/* Sticky-телефон: скрыт по умолчанию (mobile, tablet, no-JS, reduced motion) */
+.story__phone {
+  display: none;
+}
+
+.phone-android__stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.phone-android__layer {
+  position: absolute;
+  inset: 0;
+}
+
+.phone-android__layer img {
+  width: 100%;
+  height: 100%;
+  border-radius: 34px;
+  object-fit: cover;
+  object-position: top;
+  background: #10161a;
+}
+
+.story__rail {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.story__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--line);
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.story__dot.is-active {
+  background: var(--brand);
+  transform: scale(1.25);
+}
+
+/* Desktop-раскладка активируется ТОЛЬКО когда JS добавил .story--js */
+@media (min-width: 1000px) and (prefers-reduced-motion: no-preference) {
+  .story--js .story__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 400px;
+    gap: clamp(48px, 6vw, 96px);
+  }
+
+  .story--js .story__scenes {
+    gap: 0;
+  }
+
+  .story--js .scene {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 82vh;
+    padding: 6vh 0;
+    transition: opacity 0.35s ease;
+  }
+
+  .story--js .scene:not(.is-active) {
+    opacity: 0.45;
+  }
+
+  .story--js .scene__screen {
+    display: none;
+  }
+
+  .story--js .story__phone {
+    display: block;
+  }
+
+  .story--js .story__sticky {
+    position: sticky;
+    top: clamp(72px, calc(50vh - 330px), 120px);
+    display: grid;
+    justify-items: center;
+  }
+
+  .phone-android--story {
+    width: min(38vh, 330px);
+  }
 }
 
 /* ---------- Старые секции: светлая совместимость (до этапа 7) ---------- */
@@ -994,11 +1192,11 @@ h3 {
 
 @media (max-width: 1280px) {
   .float-card--reminder {
-    left: -2%;
+    left: 0;
   }
 
   .float-card--expiry {
-    right: -4%;
+    right: 0;
   }
 
   .float-card--stock {

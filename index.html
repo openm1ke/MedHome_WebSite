@@ -120,6 +120,171 @@
         </div>
       </section>
 
+      <section class="story" id="story" aria-labelledby="story-title">
+        <header class="story__head">
+          <p class="eyebrow">Как работает МедДом</p>
+          <h2 id="story-title">Пять сценариев на каждый день</h2>
+        </header>
+        <div class="story__layout">
+          <ol class="story__scenes">
+            <li class="scene" data-scene="0">
+              <p class="scene__eyebrow">Аптечка</p>
+              <h3>Все препараты — в одном каталоге</h3>
+              <p class="scene__text">
+                Добавляйте лекарства с формой, дозировкой, количеством и местом
+                хранения. Быстрый поиск и понятные статусы показывают, что есть дома.
+              </p>
+              <div class="scene__screen">
+                <picture>
+                  <source srcset="assets/app-home-fresh.webp" type="image/webp" />
+                  <img
+                    src="assets/app-home-fresh.png"
+                    width="840"
+                    height="1826"
+                    alt="Экран каталога: список препаратов со статусами остатков и сроков"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <p class="scene__status">
+                <span class="status-chip status-chip--ok">Небилет · Норма · 24 шт</span>
+              </p>
+            </li>
+            <li class="scene" data-scene="1">
+              <p class="scene__eyebrow">Сканирование</p>
+              <h3>Наведите камеру — карточка заполнится быстрее</h3>
+              <p class="scene__text">
+                МедДом считывает штрихкод, QR и DataMatrix прямо с упаковки
+                и помогает добавить препарат без ручного ввода.
+              </p>
+              <div class="scene__screen">
+                <img
+                  src="assets/app-scan.svg"
+                  width="708"
+                  height="1536"
+                  alt="Экран сканирования: рамка камеры наведена на штрихкод упаковки"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <p class="scene__status">
+                <span class="status-chip status-chip--brand">Код распознан</span>
+              </p>
+            </li>
+            <li class="scene" data-scene="2">
+              <p class="scene__eyebrow">Приём</p>
+              <h3>Курс задан — МедДом напомнит</h3>
+              <p class="scene__text">
+                Выберите препарат, дозу, дни недели и время. Приложение напомнит
+                о каждом приёме и покажет прогресс курса.
+              </p>
+              <div class="scene__screen">
+                <picture>
+                  <source srcset="assets/app-course-fresh.webp" type="image/webp" />
+                  <img
+                    src="assets/app-course-fresh.png"
+                    width="840"
+                    height="1826"
+                    alt="Экран курса приёма: расписание с дозой, днями недели и временем"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <p class="scene__status">
+                <span class="status-chip status-chip--brand">20:00 · Принять 1 таблетку</span>
+              </p>
+            </li>
+            <li class="scene" data-scene="3">
+              <p class="scene__eyebrow">Запасы</p>
+              <h3>Просрочка не останется незамеченной</h3>
+              <p class="scene__text">
+                Приложение подсвечивает малый остаток, истекающие и просроченные
+                препараты — сразу видно, что пополнить или заменить.
+              </p>
+              <div class="scene__screen">
+                <picture>
+                  <source srcset="assets/app-expiry-fresh.webp" type="image/webp" />
+                  <img
+                    src="assets/app-expiry-fresh.png"
+                    width="840"
+                    height="1866"
+                    alt="Экран запасов: препараты с истекающим сроком годности и малым остатком"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <p class="scene__status">
+                <span class="status-chip status-chip--amber">Истекает через 14 дней</span>
+                <span class="status-chip status-chip--coral">Просрочен · заменить</span>
+              </p>
+            </li>
+            <li class="scene" data-scene="4">
+              <p class="scene__eyebrow">Здоровье</p>
+              <h3>Динамика показателей — на понятном графике</h3>
+              <p class="scene__text">
+                Записывайте измерения и самочувствие. Графики за день, неделю,
+                месяц и год помогают вовремя заметить изменения.
+              </p>
+              <div class="scene__screen">
+                <picture>
+                  <source srcset="assets/app-health-fresh.webp" type="image/webp" />
+                  <img
+                    src="assets/app-health-fresh.png"
+                    width="840"
+                    height="1826"
+                    alt="Экран показателей здоровья: график давления и пульса за период"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <p class="scene__status">
+                <span class="status-chip status-chip--ok">120/80 · Давление в норме</span>
+              </p>
+            </li>
+          </ol>
+          <div class="story__phone" aria-hidden="true">
+            <div class="story__sticky">
+              <div class="story__rail" data-story-rail>
+                <span class="story__dot is-active"></span>
+                <span class="story__dot"></span>
+                <span class="story__dot"></span>
+                <span class="story__dot"></span>
+                <span class="story__dot"></span>
+              </div>
+              <figure class="phone-android phone-android--story">
+                <span class="phone-android__button phone-android__button--volume" aria-hidden="true"></span>
+                <span class="phone-android__button phone-android__button--power" aria-hidden="true"></span>
+                <div class="phone-android__stack" data-story-screens>
+                  <picture class="phone-android__layer">
+                    <source srcset="assets/app-home-fresh.webp" type="image/webp" />
+                    <img src="assets/app-home-fresh.png" width="840" height="1826" alt="" loading="lazy" decoding="async" />
+                  </picture>
+                  <picture class="phone-android__layer">
+                    <img src="assets/app-scan.svg" width="708" height="1536" alt="" loading="lazy" decoding="async" />
+                  </picture>
+                  <picture class="phone-android__layer">
+                    <source srcset="assets/app-course-fresh.webp" type="image/webp" />
+                    <img src="assets/app-course-fresh.png" width="840" height="1826" alt="" loading="lazy" decoding="async" />
+                  </picture>
+                  <picture class="phone-android__layer">
+                    <source srcset="assets/app-expiry-fresh.webp" type="image/webp" />
+                    <img src="assets/app-expiry-fresh.png" width="840" height="1866" alt="" loading="lazy" decoding="async" />
+                  </picture>
+                  <picture class="phone-android__layer">
+                    <source srcset="assets/app-health-fresh.webp" type="image/webp" />
+                    <img src="assets/app-health-fresh.png" width="840" height="1826" alt="" loading="lazy" decoding="async" />
+                  </picture>
+                </div>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="store-section" id="download" aria-labelledby="download-title">
         <div class="section__intro">
           <p class="eyebrow">Скачать</p>
@@ -266,6 +431,7 @@
 
     <script src="script.js?v=20260703-0002"></script>
     <script src="vendor/gsap.min.js" defer></script>
-    <script src="animations.js?v=20260712-0002" defer></script>
+    <script src="vendor/ScrollTrigger.min.js" defer></script>
+    <script src="animations.js?v=20260712-0003" defer></script>
   </body>
 </html>
