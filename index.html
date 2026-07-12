@@ -38,7 +38,7 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260712-0002" />
+    <link rel="stylesheet" href="styles.css?v=20260712-0003" />
     <link rel="preload" as="image" href="assets/app-home-fresh.webp" type="image/webp" fetchpriority="high" />
   </head>
   <body>
@@ -53,7 +53,7 @@
         <span aria-hidden="true"></span>
       </button>
       <nav class="nav" id="primary-nav" aria-label="Основная навигация" data-nav>
-        <a href="#features">Возможности</a>
+        <a href="#story">Возможности</a>
         <a href="#download">Скачать</a>
         <a href="agreements.html">Соглашения</a>
         <a href="#contacts">Контакты</a>
@@ -370,122 +370,201 @@
         </div>
       </section>
 
-      <section class="store-section" id="download" aria-labelledby="download-title">
+      <section class="extras" id="extras" aria-labelledby="extras-title">
         <div class="section__intro">
-          <p class="eyebrow">Скачать</p>
-          <h2 id="download-title">Установите МедДом из удобного магазина</h2>
+          <p class="eyebrow">Ещё в МедДом</p>
+          <h2 id="extras-title">Мелочи, которые упрощают день</h2>
           <p>
-            Выберите платформу. Если релиз еще проходит модерацию, плитка приведет
-            на страницу ожидания или будет обновлена после публикации.
+            Помимо каталога, курсов, сканирования и показателей здоровья,
+            в приложении есть несколько удобных деталей.
           </p>
         </div>
-        <div class="store-grid">
-          <a class="store-tile store-tile--disabled" href="#" aria-label="App Store скоро будет доступен" aria-disabled="true">
-            <img class="store-tile__logo" src="assets/store-appstore.png" alt="" />
-            <span>
-              <strong>App Store</strong>
-              <small>Скоро будет доступно</small>
-            </span>
-          </a>
-          <a class="store-tile" target="_blank" href="https://www.rustore.ru/catalog/app/ru.izpz.medhome" aria-label="Скачать МедДом в RuStore">
-            <img class="store-tile__logo" src="assets/store-rustore.png" alt="" />
-            <span>
-              <strong>RuStore</strong>
-              <small>Для Android в России</small>
-            </span>
-          </a>
-          <a class="store-tile store-tile--disabled" href="#" aria-label="Google Play скоро будет доступен" aria-disabled="true">
-            <img class="store-tile__logo" src="assets/store-googleplay.png" alt="" />
-            <span>
-              <strong>Google Play</strong>
-              <small>Скоро будет доступно</small>
-            </span>
-          </a>
+        <div class="extras__grid">
+          <article class="extra extra--wide reveal">
+            <div class="extra__copy">
+              <p class="scene__eyebrow">Оформление</p>
+              <h3>Светлая и тёмная тема</h3>
+              <p class="extra__text">
+                Переключайте оформление под дневное использование или спокойную
+                работу вечером — интерфейс сохраняет тот же порядок и понятность.
+              </p>
+            </div>
+            <div class="extra__duo">
+              <picture class="screen-tile screen-tile--light">
+                <source srcset="assets/app-theme-light.webp" type="image/webp" />
+                <img
+                  src="assets/app-theme-light.png"
+                  width="840"
+                  height="1866"
+                  alt="Профиль приложения со светлой темой оформления"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <picture class="screen-tile screen-tile--dark">
+                <source srcset="assets/app-theme-dark.webp" type="image/webp" />
+                <img
+                  src="assets/app-theme-dark.png"
+                  width="840"
+                  height="1826"
+                  alt="Профиль приложения с тёмной темой оформления"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+            </div>
+          </article>
+
+          <article class="extra extra--large reveal">
+            <picture class="screen-tile screen-tile--large">
+              <source srcset="assets/app-android-widgets-fresh.webp" type="image/webp" />
+              <img
+                src="assets/app-android-widgets-fresh.png"
+                width="840"
+                height="1866"
+                alt="Android-виджеты МедДом на домашнем экране телефона"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+            <div class="extra__copy">
+              <p class="scene__eyebrow">Android-виджеты</p>
+              <h3>Быстрые действия с домашнего экрана</h3>
+              <p class="extra__text">
+                Отмечайте приём препарата, добавляйте показания давления и
+                записывайте самочувствие — без открытия приложения.
+              </p>
+            </div>
+          </article>
+
+          <div class="extra__compact-stack">
+            <article class="extra extra--compact reveal">
+              <picture class="screen-tile screen-tile--compact">
+                <source srcset="assets/app-badge-colors.webp" type="image/webp" />
+                <img
+                  src="assets/app-badge-colors.png"
+                  width="840"
+                  height="1866"
+                  alt="Выбор цвета фона бейджа препарата: однотонные и градиентные варианты"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <div class="extra__copy">
+                <p class="scene__eyebrow">Персонализация</p>
+                <h3>Цвета карточек препаратов</h3>
+                <p class="extra__text">
+                  Выбирайте однотонный или градиентный фон бейджа, чтобы быстрее
+                  различать препараты в списке.
+                </p>
+              </div>
+            </article>
+
+            <article class="extra extra--compact reveal">
+              <picture class="screen-tile screen-tile--compact">
+                <source srcset="assets/app-drug-detail-fresh.webp" type="image/webp" />
+                <img
+                  src="assets/app-drug-detail-fresh.png"
+                  width="840"
+                  height="1866"
+                  alt="Карточка препарата с формой, дозировкой, остатком и сроком годности"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <div class="extra__copy">
+                <p class="scene__eyebrow">Карточка препарата</p>
+                <h3>Всё о лекарстве на одном экране</h3>
+                <p class="extra__text">
+                  Форма, дозировка, остаток и срок годности видны сразу,
+                  без переходов между экранами.
+                </p>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 
-      <section class="stats" aria-label="Ключевые сценарии">
-        <div>
-          <strong>Аптечка</strong>
-          <span>Каталог препаратов, остатки и категории</span>
+      <section class="download" id="download" aria-labelledby="download-title">
+        <div class="download__primary reveal">
+          <img class="download__logo" src="assets/store-rustore.svg" alt="" width="40" height="40" />
+          <div class="download__primary-copy">
+            <p class="eyebrow">Скачать</p>
+            <h2 id="download-title">Установите МедДом из RuStore</h2>
+            <p>Бесплатно для Android. Работает в России без ограничений доступа.</p>
+          </div>
+          <a
+            class="button button--primary download__cta"
+            target="_blank"
+            rel="noopener"
+            href="https://www.rustore.ru/catalog/app/ru.izpz.medhome"
+          >Скачать в RuStore</a>
         </div>
-        <div>
-          <strong>Прием</strong>
-          <span>Курсы, расписание и напоминания</span>
-        </div>
-        <div>
-          <strong>Здоровье</strong>
-          <span>Давление, пульс, вес и динамика</span>
-        </div>
+        <ul class="download__soon reveal">
+          <li class="download__soon-item">
+            <img src="assets/store-appstore.svg" alt="" width="22" height="22" />
+            <span>App Store</span>
+            <small>Скоро</small>
+          </li>
+          <li class="download__soon-item">
+            <img src="assets/store-googleplay.svg" alt="" width="22" height="22" />
+            <span>Google Play</span>
+            <small>Скоро</small>
+          </li>
+        </ul>
       </section>
 
-      <section class="section" id="features" aria-labelledby="features-title">
-        <div class="section__intro">
-          <p class="eyebrow">Возможности</p>
-          <h2 id="features-title">Все важное по лекарствам без хаоса в заметках</h2>
-          <p>
-            Приложение помогает навести порядок в домашней аптечке и превращает
-            разрозненные напоминания в понятный ежедневный процесс.
-          </p>
+      <section class="trust" id="trust" aria-labelledby="trust-title">
+        <div class="section__intro reveal">
+          <p class="eyebrow">Приватность</p>
+          <h2 id="trust-title">Ваши данные — под вашим контролем</h2>
         </div>
-        <div class="feature-grid">
-          <article class="feature-card">
-            <span class="feature-card__icon" aria-hidden="true">▦</span>
-            <h3>Удобный каталог</h3>
-            <p>Добавляйте препараты домашней аптечки, дозировки, формы выпуска, количество и срок годности.</p>
-            <strong>Все препараты под рукой</strong>
-          </article>
-          <article class="feature-card">
-            <span class="feature-card__icon feature-card__icon--warm" aria-hidden="true">⏱</span>
-            <h3>Курсы приема</h3>
-            <p>Создавайте расписание лечения и получайте напоминания, чтобы не пропускать прием.</p>
-            <strong>По дням и времени</strong>
-          </article>
-          <article class="feature-card">
-            <span class="feature-card__icon feature-card__icon--green" aria-hidden="true">↗</span>
-            <h3>Показатели здоровья</h3>
-            <p>Сохраняйте давление, пульс, вес и самочувствие, отслеживайте динамику по периодам.</p>
-            <strong>История измерений</strong>
-          </article>
-          <article class="feature-card">
-            <span class="feature-card__icon feature-card__icon--coral" aria-hidden="true">!</span>
-            <h3>Контроль запасов</h3>
-            <p>Видите, что заканчивается, что истекает, и какие препараты пора обновить.</p>
-            <strong>Меньше просрочки</strong>
-          </article>
-          <article class="feature-card">
-            <span class="feature-card__icon feature-card__icon--blue" aria-hidden="true">▣</span>
-            <h3>Виджеты Android</h3>
-            <p>Отмечайте прием, добавляйте давление и самочувствие прямо с домашнего экрана.</p>
-            <strong>Быстрые действия</strong>
-          </article>
-          <article class="feature-card">
-            <span class="feature-card__icon feature-card__icon--violet" aria-hidden="true">◐</span>
-            <h3>Светлая и темная тема</h3>
-            <p>Переключайте оформление под дневное использование или спокойную работу вечером.</p>
-            <strong>Комфортный режим</strong>
-          </article>
-          <article class="feature-card">
-            <span class="feature-card__icon feature-card__icon--lime" aria-hidden="true">⌗</span>
-            <h3>Сканирование камерой</h3>
-            <p>Наводите камеру на код упаковки, чтобы быстрее добавить препарат в домашнюю аптечку.</p>
-            <strong>Меньше ручного ввода</strong>
-          </article>
-          <article class="feature-card">
-            <span class="feature-card__icon feature-card__icon--pink" aria-hidden="true">●</span>
-            <h3>Цвета карточек</h3>
-            <p>Выбирайте однотонный или градиентный фон бейджа, чтобы легко различать препараты.</p>
-            <strong>Персональная аптечка</strong>
-          </article>
-        </div>
+        <ul class="trust__list">
+          <li class="trust__item reveal">
+            <span class="trust__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6l7-3z" />
+                <path d="M9 12l2 2 4-4" />
+              </svg>
+            </span>
+            <p>
+              Данные о здоровье обрабатываются только
+              <a href="agreements.html#health-data-consent">с вашего согласия</a>.
+            </p>
+          </li>
+          <li class="trust__item reveal">
+            <span class="trust__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 3h8l4 4v14H7z" />
+                <path d="M9 11h6M9 15h6" />
+              </svg>
+            </span>
+            <p>
+              Все условия использования открыты — читайте их
+              на странице <a href="agreements.html">соглашений</a>.
+            </p>
+          </li>
+          <li class="trust__item reveal">
+            <span class="trust__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 6h16v12H4z" />
+                <path d="m4 7 8 6 8-6" />
+              </svg>
+            </span>
+            <p>
+              Есть вопрос о данных или работе приложения — служба поддержки
+              отвечает напрямую на <a href="mailto:support@mymedhome.ru">support@mymedhome.ru</a>.
+            </p>
+          </li>
+        </ul>
       </section>
 
       <section class="contacts" id="contacts" aria-labelledby="contacts-title">
-        <div>
+        <div class="reveal">
           <h2 id="contacts-title">Остались вопросы?</h2>
           <p>Напишите нам.</p>
         </div>
-        <div class="contact-panel">
+        <div class="contact-panel reveal">
           <a class="contact-mail" href="mailto:support@mymedhome.ru">support@mymedhome.ru</a>
         </div>
       </section>
@@ -517,6 +596,6 @@
     <script src="script.js?v=20260703-0002"></script>
     <script src="vendor/gsap.min.js" defer></script>
     <script src="vendor/ScrollTrigger.min.js" defer></script>
-    <script src="animations.js?v=20260712-0004" defer></script>
+    <script src="animations.js?v=20260712-0005" defer></script>
   </body>
 </html>

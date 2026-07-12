@@ -389,8 +389,46 @@
       );
     };
 
+    /* ==================== НИЖНИЕ СЕКЦИИ ==================== */
+
+    /* Короткий однократный reveal для extras/download/trust/contacts.
+       Один ScrollTrigger.batch — не создаёт отдельного триггера на каждый
+       элемент и не конкурирует с триггерами story. */
+    const initLowerReveals = () => {
+      if (!window.ScrollTrigger) return;
+      const targets = [
+        ...document.querySelectorAll(".extras .reveal, .download .reveal, .trust .reveal, .contacts .reveal"),
+      ];
+      if (!targets.length) return;
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.set(targets, { autoAlpha: 0, y: 18 });
+
+        const triggers = ScrollTrigger.batch(targets, {
+          start: "top 88%",
+          once: true,
+          onEnter: (batch) =>
+            gsap.to(batch, {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.5,
+              ease: "power2.out",
+              stagger: 0.08,
+              overwrite: "auto",
+            }),
+        });
+
+        return () => {
+          triggers.forEach((trigger) => trigger.kill());
+          gsap.killTweensOf(targets);
+          gsap.set(targets, { clearProps: "all" });
+        };
+      });
+    };
+
     initHero();
     initStory();
+    initLowerReveals();
 
     const destroyAnimations = () => {
       mm.revert();
