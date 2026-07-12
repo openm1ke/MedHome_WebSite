@@ -181,9 +181,119 @@
       const layers = [...story.querySelectorAll("[data-story-screens] .phone-android__layer")];
       const scenes = [...story.querySelectorAll(".scene")];
       const dots = [...story.querySelectorAll(".story__dot")];
+      const caption = story.querySelector("[data-story-caption]");
+      const cards = scenes.map((scene) => scene.querySelector(".scene__card"));
+      const sceneNames = [...story.querySelectorAll(".scene__eyebrow")].map((el) => el.textContent.trim());
       if (!layers.length || layers.length !== scenes.length) return;
 
       let currentScreen = 0;
+      let chartDrawn = false;
+
+      /* --- Сценовые эффекты: каждый объясняет возможность продукта --- */
+
+      /* Сцена 2: одна короткая линия сканирования при входе, без повторов */
+      const initScanAnimation = () => {
+        const line = story.querySelector(".scan-card__line");
+        if (!line) return () => {};
+        return () => {
+          gsap
+            .timeline({ defaults: { overwrite: "auto" } })
+            .fromTo(
+              line,
+              { top: "18%", opacity: 0.9 },
+              { top: "78%", duration: 0.5, ease: "power1.inOut" }
+            )
+            .to(line, { top: "50%", opacity: 0.5, duration: 0.25, ease: "power1.out" });
+        };
+      };
+
+      /* Сцена 3: сначала уведомление, затем прогресс курса */
+      const initCourseProgress = () => {
+        const notify = story.querySelector(".notify-card");
+        const fill = story.querySelector(".course-progress__fill");
+        const label = story.querySelector(".course-progress__label");
+        if (!notify || !fill) return () => {};
+        return () => {
+          gsap
+            .timeline({ defaults: { ease: "power2.out", overwrite: "auto" } })
+            .fromTo(notify, { y: 10, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.35 }, 0.05)
+            .fromTo(label, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, 0.3)
+            .fromTo(fill, { scaleX: 0 }, { scaleX: 1, duration: 0.4, ease: "power1.inOut" }, 0.35);
+        };
+      };
+
+      /* Сцена 5: линия графика рисуется один раз, точки и подпись — после */
+      const initHealthChart = () => {
+        const line = story.querySelector("[data-chart-line]");
+        const dotsGroup = story.querySelector("[data-chart-dots]");
+        const label = story.querySelector("[data-chart-label]");
+        if (!line || !dotsGroup) return () => {};
+        return () => {
+          if (chartDrawn) return;
+          chartDrawn = true;
+          const length = line.getTotalLength();
+          const chartDots = [...dotsGroup.querySelectorAll("circle")];
+          gsap
+            .timeline({ defaults: { overwrite: "auto" } })
+            .fromTo(
+              line,
+              { strokeDasharray: length, strokeDashoffset: length },
+              { strokeDashoffset: 0, duration: 0.9, ease: "power1.inOut" },
+              0.15
+            )
+            .fromTo(
+              chartDots,
+              { scale: 0, transformOrigin: "50% 50%" },
+              { scale: 1, duration: 0.3, ease: "back.out(2)", stagger: 0.06 },
+              0.7
+            )
+            .fromTo(label, { autoAlpha: 0, y: 4 }, { autoAlpha: 1, y: 0, duration: 0.3 }, 1.2);
+        };
+      };
+
+      const sceneEffects = {
+        1: initScanAnimation(),
+        2: initCourseProgress(),
+        4: initHealthChart(),
+      };
+
+      /* Появление/скрытие карточки сцены; overwrite защищает от быстрой прокрутки */
+      const animateSceneCard = (index, active) => {
+        const card = cards[index];
+        if (!card) return;
+        if (active) {
+          gsap.fromTo(
+            card,
+            { y: 14, scale: 0.97, autoAlpha: 0 },
+            { y: 0, scale: 1, autoAlpha: 1, duration: 0.4, ease: "power2.out", overwrite: "auto" }
+          );
+          sceneEffects[index]?.();
+        } else {
+          gsap.to(card, { autoAlpha: 0, duration: 0.2, ease: "power1.out", overwrite: "auto" });
+        }
+      };
+
+      const initSceneCards = (activeIndex) => {
+        cards.forEach((card, i) => {
+          if (card) gsap.set(card, { autoAlpha: i === activeIndex ? 1 : 0 });
+        });
+      };
+
+      /* Возврат карточек и эффектов к статичному состоянию (mobile, no-JS, cleanup) */
+      const resetSceneVisuals = () => {
+        const fxTargets = [
+          ...cards,
+          story.querySelector(".scan-card__line"),
+          story.querySelector(".notify-card"),
+          story.querySelector(".course-progress__label"),
+          story.querySelector(".course-progress__fill"),
+          story.querySelector("[data-chart-line]"),
+          story.querySelector("[data-chart-label]"),
+          ...story.querySelectorAll("[data-chart-dots] circle"),
+        ].filter(Boolean);
+        gsap.killTweensOf(fxTargets);
+        gsap.set(fxTargets, { clearProps: "all" });
+      };
 
       /* Двухслойный crossfade текущего и целевого экрана.
          overwrite: "auto" снимает встречные твины при быстрой прокрутке. */
@@ -202,10 +312,19 @@
 
       const updateStoryProgress = (index) => {
         dots.forEach((dot, i) => dot.classList.toggle("is-active", i === index));
+        if (caption && sceneNames[index] && caption.textContent !== sceneNames[index]) {
+          caption.textContent = sceneNames[index];
+          gsap.fromTo(caption, { autoAlpha: 0.3 }, { autoAlpha: 1, duration: 0.25, overwrite: "auto" });
+        }
       };
 
       const activateScene = (index) => {
-        scenes.forEach((scene, i) => scene.classList.toggle("is-active", i === index));
+        scenes.forEach((scene, i) => {
+          const isActive = i === index;
+          const wasActive = scene.classList.contains("is-active");
+          scene.classList.toggle("is-active", isActive);
+          if (isActive !== wasActive) animateSceneCard(i, isActive);
+        });
         setPhoneScreen(index);
         updateStoryProgress(index);
       };
@@ -233,8 +352,12 @@
         const triggers = scenes.map((scene, index) => createSceneTrigger(scene, index));
         ScrollTrigger.refresh();
 
-        const activeIndex = triggers.findIndex((trigger) => trigger.isActive);
-        activateScene(activeIndex >= 0 ? activeIndex : 0);
+        const activeIndex = Math.max(
+          triggers.findIndex((trigger) => trigger.isActive),
+          0
+        );
+        initSceneCards(activeIndex);
+        activateScene(activeIndex);
 
         return destroyStory(triggers);
       };
@@ -243,9 +366,10 @@
         triggers.forEach((trigger) => trigger.kill());
         story.classList.remove("story--js");
         scenes.forEach((scene) => scene.classList.remove("is-active"));
-        updateStoryProgress(0);
+        dots.forEach((dot, i) => dot.classList.toggle("is-active", i === 0));
         gsap.killTweensOf(layers);
         gsap.set(layers, { clearProps: "all" });
+        resetSceneVisuals();
         currentScreen = 0;
       };
 

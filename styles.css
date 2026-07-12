@@ -556,6 +556,313 @@ h3 {
   font-weight: 700;
 }
 
+/* --- Содержательные карточки сцен --- */
+
+.scene__card {
+  max-width: 420px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-s);
+  padding: 14px 16px;
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Сцена 1: карточка препарата */
+.drug-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.drug-card__badge {
+  display: grid;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--brand-soft);
+  color: var(--brand-strong);
+}
+
+.drug-card__badge svg {
+  width: 24px;
+  height: 24px;
+}
+
+.drug-card__info {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.drug-card__info strong {
+  font-size: 15.5px;
+}
+
+.drug-card__info small,
+.drug-card__meta small,
+.notify-card__text small {
+  color: var(--ink-soft);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.drug-card__meta {
+  display: grid;
+  gap: 4px;
+  margin-left: auto;
+  justify-items: end;
+}
+
+.drug-card__meta .status-chip {
+  min-height: 26px;
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+/* Сцена 2: рамка-прицел сканера */
+.scan-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.scan-card__frame {
+  position: relative;
+  display: grid;
+  flex: none;
+  width: 104px;
+  height: 64px;
+  place-items: center;
+  overflow: hidden;
+  border: 2px dashed rgba(14, 107, 102, 0.55);
+  border-radius: 12px;
+  background: var(--bg-wash);
+}
+
+.scan-card__code {
+  width: 72px;
+  height: 34px;
+  color: var(--ink);
+}
+
+.scan-card__line {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  left: 8px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--brand);
+  box-shadow: 0 0 0 1px rgba(14, 107, 102, 0.12);
+  opacity: 0.5;
+}
+
+.scan-card__info {
+  display: grid;
+  gap: 2px;
+}
+
+.scan-card__info strong {
+  font-size: 15.5px;
+}
+
+.scan-card__info small {
+  color: var(--ink-soft);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+/* Сцена 3: уведомление + прогресс курса */
+.course-card {
+  display: grid;
+  gap: 12px;
+}
+
+.notify-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.notify-card__icon {
+  display: grid;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--brand-soft);
+  color: var(--brand-strong);
+}
+
+.notify-card__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.notify-card__text {
+  display: grid;
+  gap: 2px;
+}
+
+.notify-card__text strong {
+  font-size: 15.5px;
+}
+
+.course-progress {
+  display: grid;
+  gap: 8px;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+
+.course-progress__label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.course-progress__label small {
+  color: var(--ink-soft);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.course-progress__label strong {
+  font-size: 13.5px;
+}
+
+.course-progress__bar {
+  display: block;
+  height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--bg-wash);
+}
+
+.course-progress__fill {
+  display: block;
+  width: 36%;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--brand);
+  transform-origin: left center;
+}
+
+/* Сцена 4: статусы запасов */
+.stock-cards {
+  display: grid;
+  gap: 10px;
+  max-width: 420px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.stock-card {
+  display: grid;
+  gap: 2px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-s);
+  border-left-width: 4px;
+  padding: 12px 16px;
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.stock-card small {
+  color: var(--ink-soft);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.stock-card strong {
+  font-size: 15px;
+}
+
+.stock-card--amber {
+  border-left-color: var(--amber);
+}
+
+.stock-card--amber strong {
+  color: var(--amber);
+}
+
+.stock-card--coral {
+  border-left-color: var(--coral);
+}
+
+.stock-card--coral strong {
+  color: var(--coral);
+}
+
+/* Сцена 5: график здоровья */
+.chart-card {
+  display: grid;
+  gap: 10px;
+}
+
+.chart-card__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.chart-card__head strong {
+  font-size: 15.5px;
+}
+
+.chart-card__head small {
+  color: var(--ink-soft);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.health-chart {
+  width: 100%;
+  height: auto;
+}
+
+.health-chart__grid {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.health-chart__line {
+  fill: none;
+  stroke: var(--brand);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.health-chart__dots circle {
+  fill: var(--surface);
+  stroke: var(--brand);
+  stroke-width: 2;
+}
+
+.health-chart__dots .is-final {
+  fill: var(--brand);
+}
+
+.health-chart__label rect {
+  fill: var(--brand);
+}
+
+.health-chart__label text {
+  fill: #ffffff;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
 .status-chip--ok {
   background: var(--ok-soft);
   color: var(--ok);
@@ -602,23 +909,38 @@ h3 {
 }
 
 .story__rail {
-  display: flex;
-  justify-content: center;
+  display: grid;
   gap: 8px;
+  justify-items: center;
   margin-bottom: 18px;
+}
+
+.story__dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .story__dot {
   width: 8px;
   height: 8px;
-  border-radius: 50%;
+  border-radius: 999px;
   background: var(--line);
-  transition: background 0.25s ease, transform 0.25s ease;
+  transition: background 0.3s ease, width 0.3s ease;
 }
 
 .story__dot.is-active {
+  width: 22px;
   background: var(--brand);
-  transform: scale(1.25);
+}
+
+.story__rail-caption {
+  min-height: 18px;
+  color: var(--ink-soft);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 /* Desktop-раскладка активируется ТОЛЬКО когда JS добавил .story--js */

@@ -38,7 +38,7 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260712-0001" />
+    <link rel="stylesheet" href="styles.css?v=20260712-0002" />
     <link rel="preload" as="image" href="assets/app-home-fresh.webp" type="image/webp" fetchpriority="high" />
   </head>
   <body>
@@ -147,9 +147,22 @@
                   />
                 </picture>
               </div>
-              <p class="scene__status">
-                <span class="status-chip status-chip--ok">Небилет · Норма · 24 шт</span>
-              </p>
+              <div class="scene__card drug-card">
+                <span class="drug-card__badge" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                    <circle cx="12" cy="12" r="8" />
+                    <path d="M6.6 14.6l10.8-5.2" />
+                  </svg>
+                </span>
+                <span class="drug-card__info">
+                  <strong>Небилет</strong>
+                  <small>Таблетки · 5 мг</small>
+                </span>
+                <span class="drug-card__meta">
+                  <span class="status-chip status-chip--ok">Норма</span>
+                  <small>Остаток · 24 шт</small>
+                </span>
+              </div>
             </li>
             <li class="scene" data-scene="1">
               <p class="scene__eyebrow">Сканирование</p>
@@ -168,9 +181,26 @@
                   decoding="async"
                 />
               </div>
-              <p class="scene__status">
-                <span class="status-chip status-chip--brand">Код распознан</span>
-              </p>
+              <div class="scene__card scan-card">
+                <span class="scan-card__frame" aria-hidden="true">
+                  <svg class="scan-card__code" viewBox="0 0 72 34">
+                    <g fill="currentColor">
+                      <rect x="2" y="4" width="3" height="26" /><rect x="8" y="4" width="1.6" height="26" />
+                      <rect x="13" y="4" width="4.4" height="26" /><rect x="20" y="4" width="1.6" height="26" />
+                      <rect x="25" y="4" width="2.6" height="26" /><rect x="31" y="4" width="1.4" height="26" />
+                      <rect x="35" y="4" width="4.6" height="26" /><rect x="43" y="4" width="2" height="26" />
+                      <rect x="48" y="4" width="1.4" height="26" /><rect x="52" y="4" width="3.4" height="26" />
+                      <rect x="58" y="4" width="1.6" height="26" /><rect x="62" y="4" width="4" height="26" />
+                      <rect x="68.4" y="4" width="1.8" height="26" />
+                    </g>
+                  </svg>
+                  <i class="scan-card__line"></i>
+                </span>
+                <span class="scan-card__info">
+                  <strong>Код распознан</strong>
+                  <small>DataMatrix · Штрихкод · QR</small>
+                </span>
+              </div>
             </li>
             <li class="scene" data-scene="2">
               <p class="scene__eyebrow">Приём</p>
@@ -192,9 +222,27 @@
                   />
                 </picture>
               </div>
-              <p class="scene__status">
-                <span class="status-chip status-chip--brand">20:00 · Принять 1 таблетку</span>
-              </p>
+              <div class="scene__card course-card">
+                <div class="notify-card">
+                  <span class="notify-card__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 9a6 6 0 1 0-12 0c0 5-2 6-2 6h16s-2-1-2-6" />
+                      <path d="M10.3 19a2 2 0 0 0 3.4 0" />
+                    </svg>
+                  </span>
+                  <span class="notify-card__text">
+                    <strong>20:00 · Небилет</strong>
+                    <small>Принять 1 таблетку</small>
+                  </span>
+                </div>
+                <div class="course-progress">
+                  <span class="course-progress__label">
+                    <small>Прогресс курса</small>
+                    <strong>День 5 из 14</strong>
+                  </span>
+                  <span class="course-progress__bar" aria-hidden="true"><i class="course-progress__fill"></i></span>
+                </div>
+              </div>
             </li>
             <li class="scene" data-scene="3">
               <p class="scene__eyebrow">Запасы</p>
@@ -216,10 +264,16 @@
                   />
                 </picture>
               </div>
-              <p class="scene__status">
-                <span class="status-chip status-chip--amber">Истекает через 14 дней</span>
-                <span class="status-chip status-chip--coral">Просрочен · заменить</span>
-              </p>
+              <div class="scene__card stock-cards">
+                <div class="stock-card stock-card--amber">
+                  <small>Срок годности</small>
+                  <strong>Истекает через 14 дней</strong>
+                </div>
+                <div class="stock-card stock-card--coral">
+                  <small>Статус</small>
+                  <strong>Просрочен · заменить</strong>
+                </div>
+              </div>
             </li>
             <li class="scene" data-scene="4">
               <p class="scene__eyebrow">Здоровье</p>
@@ -241,19 +295,50 @@
                   />
                 </picture>
               </div>
-              <p class="scene__status">
-                <span class="status-chip status-chip--ok">120/80 · Давление в норме</span>
-              </p>
+              <div class="scene__card chart-card">
+                <div class="chart-card__head">
+                  <strong>Давление</strong>
+                  <small>Неделя</small>
+                </div>
+                <svg
+                  class="health-chart"
+                  viewBox="0 0 300 130"
+                  role="img"
+                  aria-label="График давления за неделю: значения в норме, последняя точка 120 на 80"
+                  data-health-chart
+                >
+                  <path class="health-chart__grid" d="M4 104 H296 M4 64 H296 M4 24 H296" />
+                  <path
+                    class="health-chart__line"
+                    d="M10 94 C 36 88, 52 68, 80 72 S 124 94, 152 80 S 208 46, 236 54 S 274 60, 290 48"
+                    data-chart-line
+                  />
+                  <g class="health-chart__dots" data-chart-dots>
+                    <circle cx="10" cy="94" r="4" />
+                    <circle cx="80" cy="72" r="4" />
+                    <circle cx="152" cy="80" r="4" />
+                    <circle cx="236" cy="54" r="4" />
+                    <circle class="is-final" cx="290" cy="48" r="5" />
+                  </g>
+                  <g class="health-chart__label" data-chart-label>
+                    <rect x="226" y="10" width="56" height="24" rx="9" />
+                    <text x="254" y="26">120/80</text>
+                  </g>
+                </svg>
+              </div>
             </li>
           </ol>
           <div class="story__phone" aria-hidden="true">
             <div class="story__sticky">
               <div class="story__rail" data-story-rail>
-                <span class="story__dot is-active"></span>
-                <span class="story__dot"></span>
-                <span class="story__dot"></span>
-                <span class="story__dot"></span>
-                <span class="story__dot"></span>
+                <span class="story__dots">
+                  <span class="story__dot is-active"></span>
+                  <span class="story__dot"></span>
+                  <span class="story__dot"></span>
+                  <span class="story__dot"></span>
+                  <span class="story__dot"></span>
+                </span>
+                <span class="story__rail-caption" data-story-caption>Аптечка</span>
               </div>
               <figure class="phone-android phone-android--story">
                 <span class="phone-android__button phone-android__button--volume" aria-hidden="true"></span>
@@ -432,6 +517,6 @@
     <script src="script.js?v=20260703-0002"></script>
     <script src="vendor/gsap.min.js" defer></script>
     <script src="vendor/ScrollTrigger.min.js" defer></script>
-    <script src="animations.js?v=20260712-0003" defer></script>
+    <script src="animations.js?v=20260712-0004" defer></script>
   </body>
 </html>
