@@ -39,6 +39,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css?v=20260712-0001" />
+    <link rel="preload" as="image" href="assets/app-home-fresh.webp" type="image/webp" fetchpriority="high" />
   </head>
   <body>
     <header class="site-header" data-header>
@@ -91,14 +92,18 @@
           <figure class="phone-android">
             <span class="phone-android__button phone-android__button--volume" aria-hidden="true"></span>
             <span class="phone-android__button phone-android__button--power" aria-hidden="true"></span>
-            <img
-              class="phone-android__screen"
-              src="assets/app-home-fresh.png"
-              width="840"
-              height="1826"
-              alt="Экран приложения МедДом: каталог домашней аптечки со статусами препаратов"
-              fetchpriority="high"
-            />
+            <picture>
+              <source srcset="assets/app-home-fresh.webp" type="image/webp" />
+              <img
+                class="phone-android__screen"
+                src="assets/app-home-fresh.png"
+                width="840"
+                height="1826"
+                alt="Экран приложения МедДом: каталог домашней аптечки со статусами препаратов"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </picture>
           </figure>
           <div class="float-card float-card--reminder">
             <span class="float-card__dot" aria-hidden="true"></span>
