@@ -1,5 +1,6 @@
 (() => {
   const METRIKA_COUNTER_ID = 110289623;
+  const THEME_KEY = "medhome_theme";
   const COOKIE_CONSENT_KEY = "medhome_cookie_consent";
   const COOKIE_CONSENT_VERSION = "2026-06-30";
   const COOKIE_CONSENT_ACCEPTED = "accepted";
@@ -120,6 +121,77 @@
     if (consent === COOKIE_CONSENT_ACCEPTED) {
       loadYandexMetrika();
     }
+  };
+
+  /* Контроллер темы. Начальное значение data-theme уже выставил theme-init.js
+     (до первой отрисовки); здесь — переключатель, сохранение выбора и
+     синхронизация между вкладками. Тема по умолчанию — dark; системная
+     prefers-color-scheme на выбор темы не влияет. */
+  const initThemeToggle = () => {
+    const root = document.documentElement;
+    const toggle = document.querySelector("[data-theme-toggle]");
+    let switchTimer;
+
+    const getSavedTheme = () => {
+      try {
+        const saved = window.localStorage.getItem(THEME_KEY);
+        return saved === "dark" || saved === "light" ? saved : null;
+      } catch {
+        return null;
+      }
+    };
+
+    const saveTheme = (theme) => {
+      try {
+        window.localStorage.setItem(THEME_KEY, theme);
+      } catch {
+        /* localStorage недоступен — тема живёт до конца сессии страницы */
+      }
+    };
+
+    const syncToggle = (theme) => {
+      if (!toggle) return;
+      const isDark = theme === "dark";
+      toggle.setAttribute("aria-pressed", String(isDark));
+      toggle.setAttribute("aria-label", isDark ? "Включить светлую тему" : "Включить тёмную тему");
+    };
+
+    const applyTheme = (theme, { animate = false } = {}) => {
+      if (animate) {
+        root.classList.add("theme-switching");
+        window.clearTimeout(switchTimer);
+        switchTimer = window.setTimeout(() => {
+          root.classList.remove("theme-switching");
+        }, 260);
+      }
+      root.dataset.theme = theme;
+      root.style.colorScheme = theme;
+      syncToggle(theme);
+    };
+
+    /* Fail-safe: если theme-init.js не загрузился, data-theme не выставлен —
+       восстанавливаем тему здесь (сохранённый выбор → dark по умолчанию)
+       без записи в localStorage; applyTheme вернёт скрытый до этого
+       переключатель. */
+    if (root.dataset.theme === "dark" || root.dataset.theme === "light") {
+      syncToggle(root.dataset.theme);
+    } else {
+      applyTheme(getSavedTheme() ?? "dark");
+    }
+
+    toggle?.addEventListener("click", () => {
+      const next = root.dataset.theme === "dark" ? "light" : "dark";
+      applyTheme(next, { animate: true });
+      saveTheme(next);
+    });
+
+    /* Синхронизация между открытыми вкладками сайта: ручной выбор в другой
+       вкладке применяется здесь же; очистка ключа возвращает обе вкладки
+       к теме по умолчанию (dark), а не к системной. */
+    window.addEventListener("storage", (event) => {
+      if (event.key !== THEME_KEY) return;
+      applyTheme(getSavedTheme() ?? "dark");
+    });
   };
 
   const initNavigation = () => {
@@ -369,6 +441,7 @@
   };
 
   const initPage = () => {
+    initThemeToggle();
     initNavigation();
     initCarousel();
     initCookieConsent();

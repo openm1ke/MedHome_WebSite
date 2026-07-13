@@ -4,12 +4,14 @@
   --bg: #f7faf9;
   --bg-wash: #eff5f1;
   --surface: #ffffff;
+  --surface-raised: #ffffff;
   --ink: #142a25;
   --ink-soft: #47605a;
   --line: #dbe6e0;
   --brand: #0e6b66;
   --brand-strong: #0a514d;
   --brand-soft: #dff0ec;
+  --on-brand: #ffffff;
   --ok: #2c7857;
   --ok-soft: #e3f2ea;
   --amber: #97600e;
@@ -21,6 +23,28 @@
   --ink-invert: #f2f7f5;
   --shadow: 0 12px 32px rgba(20, 42, 37, 0.1);
   --shadow-soft: 0 6px 18px rgba(20, 42, 37, 0.07);
+  --link-underline: rgba(14, 107, 102, 0.35);
+  --header-bg: rgba(255, 255, 255, 0.82);
+  --header-bg-scrolled: rgba(255, 255, 255, 0.94);
+  --focus-ring: var(--brand);
+  --btn-primary-shadow: 0 10px 24px rgba(14, 107, 102, 0.28);
+  --phone-shadow:
+    0 30px 70px rgba(20, 42, 37, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 0 0 1px rgba(20, 42, 37, 0.4);
+  --scan-dash: rgba(14, 107, 102, 0.55);
+  --scan-line-halo: rgba(14, 107, 102, 0.12);
+  --pattern-opacity: 0.02;
+  /* Секционные подсветки и градиенты (мягкие teal/mint-washes) */
+  --glow-teal: rgba(14, 107, 102, 0.11);
+  --glow-green: rgba(46, 125, 91, 0.07);
+  --wash-mint-strong: rgba(223, 240, 236, 0.9);
+  --wash-mint-soft: rgba(223, 240, 236, 0.5);
+  --wash-green-strong: rgba(227, 242, 234, 0.8);
+  --wash-green-soft: rgba(227, 242, 234, 0.55);
+  --story-grad-a: #edf3f0;
+  --story-grad-b: #eaf1ed;
+  --extras-grad: #f0f5f2;
   --radius-s: 12px;
   --radius-m: 20px;
   --radius-l: 28px;
@@ -30,6 +54,111 @@
   --text: var(--ink);
   --muted: var(--ink-soft);
   --cyan: var(--brand);
+}
+
+/* ---------- Тёмная тема ----------
+   KEEP IN SYNC: тот же набор значений продублирован ниже в no-JS fallback
+   (:root:not([data-theme])) для работы без JavaScript. */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0c1416;
+  --bg-wash: #101a1d;
+  --surface: #142125;
+  --surface-raised: #1a2a2f;
+  --ink: #eaf3f2;
+  --ink-soft: #a9b8b8;
+  --line: rgba(234, 243, 242, 0.12);
+  --brand: #56c2b8;
+  --brand-strong: #7ad7cf;
+  --brand-soft: #143634;
+  --on-brand: #072220;
+  --ok: #6cc79a;
+  --ok-soft: #15342a;
+  --amber: #d9a95e;
+  --amber-soft: #372b17;
+  --coral: #e2919a;
+  --coral-soft: #3a2226;
+  --petrol: #124c47;
+  --petrol-deep: #0a2624;
+  --shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  --shadow-soft: 0 8px 22px rgba(0, 0, 0, 0.35);
+  --link-underline: rgba(86, 194, 184, 0.4);
+  --header-bg: rgba(20, 33, 37, 0.82);
+  --header-bg-scrolled: rgba(20, 33, 37, 0.94);
+  --focus-ring: #7ad7cf;
+  --btn-primary-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+  --phone-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.6);
+  --scan-dash: rgba(86, 194, 184, 0.55);
+  --scan-line-halo: rgba(86, 194, 184, 0.2);
+  --pattern-opacity: 0.025;
+  --glow-teal: rgba(86, 194, 184, 0.09);
+  --glow-green: rgba(94, 196, 180, 0.05);
+  --wash-mint-strong: rgba(86, 194, 184, 0.1);
+  --wash-mint-soft: rgba(86, 194, 184, 0.05);
+  --wash-green-strong: rgba(94, 196, 180, 0.07);
+  --wash-green-soft: rgba(94, 196, 180, 0.04);
+  --story-grad-a: #101c20;
+  --story-grad-b: #0d1719;
+  --extras-grad: #0f1a1c;
+  --med-pattern: url("data:image/svg+xml,%3Csvg width='300' height='300' viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%2356c2b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='44' cy='44' r='20'/%3E%3Cpath d='M30 58 58 30'/%3E%3Cpath d='M112 24h42a18 18 0 0 1 0 36h-42a18 18 0 0 1 0-36Z'/%3E%3Cpath d='M133 24v36'/%3E%3Cpath d='M222 24h28v48h-28zM218 24h36M222 72h28'/%3E%3Cpath d='M36 124h18v-18h18v18h18v18H72v18H54v-18H36z'/%3E%3Cpath d='M128 112c18 18 18 42 0 60-18-18-18-42 0-60Z'/%3E%3Cpath d='M218 118h36a18 18 0 0 1 0 36h-36a18 18 0 0 1 0-36Z'/%3E%3Cpath d='M236 118v36'/%3E%3Cpath d='M36 224h44v28H36z'/%3E%3Cpath d='M112 216h42v50h-42zM112 232h42'/%3E%3Cpath d='M214 232h50M224 218l-20 28 24 8'/%3E%3Ccircle cx='98' cy='96' r='4'/%3E%3Ccircle cx='108' cy='106' r='4'/%3E%3Ccircle cx='88' cy='108' r='4'/%3E%3Cpath d='M246 204v42M230 220h32M238 212h16'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* No-JS fallback: без data-theme используем тёмную тему по умолчанию —
+   безусловно, без учёта prefers-color-scheme.
+   KEEP IN SYNC с блоком [data-theme="dark"] выше. */
+:root:not([data-theme]) {
+  color-scheme: dark;
+  --bg: #0c1416;
+  --bg-wash: #101a1d;
+  --surface: #142125;
+  --surface-raised: #1a2a2f;
+  --ink: #eaf3f2;
+  --ink-soft: #a9b8b8;
+  --line: rgba(234, 243, 242, 0.12);
+  --brand: #56c2b8;
+  --brand-strong: #7ad7cf;
+  --brand-soft: #143634;
+  --on-brand: #072220;
+  --ok: #6cc79a;
+  --ok-soft: #15342a;
+  --amber: #d9a95e;
+  --amber-soft: #372b17;
+  --coral: #e2919a;
+  --coral-soft: #3a2226;
+  --petrol: #124c47;
+  --petrol-deep: #0a2624;
+  --shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  --shadow-soft: 0 8px 22px rgba(0, 0, 0, 0.35);
+  --link-underline: rgba(86, 194, 184, 0.4);
+  --header-bg: rgba(20, 33, 37, 0.82);
+  --header-bg-scrolled: rgba(20, 33, 37, 0.94);
+  --focus-ring: #7ad7cf;
+  --btn-primary-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+  --phone-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.6);
+  --scan-dash: rgba(86, 194, 184, 0.55);
+  --scan-line-halo: rgba(86, 194, 184, 0.2);
+  --pattern-opacity: 0.025;
+  --glow-teal: rgba(86, 194, 184, 0.09);
+  --glow-green: rgba(94, 196, 180, 0.05);
+  --wash-mint-strong: rgba(86, 194, 184, 0.1);
+  --wash-mint-soft: rgba(86, 194, 184, 0.05);
+  --wash-green-strong: rgba(94, 196, 180, 0.07);
+  --wash-green-soft: rgba(94, 196, 180, 0.04);
+  --story-grad-a: #101c20;
+  --story-grad-b: #0d1719;
+  --extras-grad: #0f1a1c;
+  --med-pattern: url("data:image/svg+xml,%3Csvg width='300' height='300' viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%2356c2b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='44' cy='44' r='20'/%3E%3Cpath d='M30 58 58 30'/%3E%3Cpath d='M112 24h42a18 18 0 0 1 0 36h-42a18 18 0 0 1 0-36Z'/%3E%3Cpath d='M133 24v36'/%3E%3Cpath d='M222 24h28v48h-28zM218 24h36M222 72h28'/%3E%3Cpath d='M36 124h18v-18h18v18h18v18H72v18H54v-18H36z'/%3E%3Cpath d='M128 112c18 18 18 42 0 60-18-18-18-42 0-60Z'/%3E%3Cpath d='M218 118h36a18 18 0 0 1 0 36h-36a18 18 0 0 1 0-36Z'/%3E%3Cpath d='M236 118v36'/%3E%3Cpath d='M36 224h44v28H36z'/%3E%3Cpath d='M112 216h42v50h-42zM112 232h42'/%3E%3Cpath d='M214 232h50M224 218l-20 28 24 8'/%3E%3Ccircle cx='98' cy='96' r='4'/%3E%3Ccircle cx='108' cy='106' r='4'/%3E%3Ccircle cx='88' cy='108' r='4'/%3E%3Cpath d='M246 204v42M230 220h32M238 212h16'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Без JS переключатель темы не работает — скрываем его, тема всегда тёмная */
+:root:not([data-theme]) .theme-toggle {
+  display: none;
 }
 
 * {
@@ -62,7 +191,7 @@ a {
 }
 
 :focus-visible {
-  outline: 2px solid var(--brand);
+  outline: 2px solid var(--focus-ring);
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -75,7 +204,7 @@ a {
   border-radius: var(--radius-s);
   padding: 12px 20px;
   background: var(--brand);
-  color: #ffffff;
+  color: var(--on-brand);
   font-weight: 700;
   text-decoration: none;
   transition: top 0.2s ease;
@@ -101,7 +230,7 @@ a {
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 0 12px 0 18px;
-  background: rgba(255, 255, 255, 0.82);
+  background: var(--header-bg);
   box-shadow: var(--shadow-soft);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
   backdrop-filter: blur(14px) saturate(140%);
@@ -109,7 +238,7 @@ a {
 }
 
 .site-header.is-scrolled {
-  background: rgba(255, 255, 255, 0.94);
+  background: var(--header-bg-scrolled);
   box-shadow: var(--shadow);
 }
 
@@ -117,6 +246,8 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  grid-row: 1;
+  grid-column: 1;
   color: var(--ink);
   font-size: 17px;
   font-weight: 800;
@@ -134,6 +265,8 @@ a {
   display: flex;
   justify-content: center;
   gap: 4px;
+  grid-row: 1;
+  grid-column: 2;
   color: var(--ink-soft);
   font-size: 14px;
   font-weight: 700;
@@ -162,6 +295,51 @@ a {
   background: var(--surface);
   color: var(--ink);
   cursor: pointer;
+}
+
+/* ---------- Переключатель темы ---------- */
+
+.theme-toggle {
+  display: inline-grid;
+  place-items: center;
+  grid-row: 1;
+  grid-column: 3;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0;
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--brand-soft);
+  color: var(--brand-strong);
+}
+
+.theme-toggle:active {
+  transform: scale(0.94);
+}
+
+.theme-toggle__icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Иконка показывает действие: в светлой теме — луна, в тёмной — солнце */
+.theme-toggle__icon--sun {
+  display: none;
+}
+
+[data-theme="dark"] .theme-toggle__icon--moon {
+  display: none;
+}
+
+[data-theme="dark"] .theme-toggle__icon--sun {
+  display: block;
 }
 
 .nav-toggle span {
@@ -268,8 +446,8 @@ h3 {
 
 .button--primary {
   background: var(--brand);
-  color: #ffffff;
-  box-shadow: 0 10px 24px rgba(14, 107, 102, 0.28);
+  color: var(--on-brand);
+  box-shadow: var(--btn-primary-shadow);
 }
 
 .button--primary:hover {
@@ -308,9 +486,9 @@ h3 {
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(circle at 82% 16%, rgba(14, 107, 102, 0.11), transparent 46%),
-    radial-gradient(circle at 4% 68%, rgba(46, 125, 91, 0.07), transparent 42%),
-    linear-gradient(180deg, rgba(223, 240, 236, 0.5), rgba(223, 240, 236, 0) 34%);
+    radial-gradient(circle at 82% 16%, var(--glow-teal), transparent 46%),
+    radial-gradient(circle at 4% 68%, var(--glow-green), transparent 42%),
+    linear-gradient(180deg, var(--wash-mint-soft), transparent 34%);
   content: "";
   pointer-events: none;
 }
@@ -323,7 +501,7 @@ h3 {
   background-image: var(--med-pattern);
   background-size: 240px 240px;
   content: "";
-  opacity: 0.02;
+  opacity: var(--pattern-opacity);
   pointer-events: none;
   -webkit-mask-image: linear-gradient(168deg, #000 0 34%, transparent 72%);
   mask-image: linear-gradient(168deg, #000 0 34%, transparent 72%);
@@ -377,7 +555,7 @@ h3 {
 .hero__trust a {
   color: var(--brand-strong);
   text-decoration: underline;
-  text-decoration-color: rgba(14, 107, 102, 0.35);
+  text-decoration-color: var(--link-underline);
   text-underline-offset: 3px;
 }
 
@@ -401,8 +579,8 @@ h3 {
   z-index: 0;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 50% 44%, rgba(223, 240, 236, 0.9), rgba(223, 240, 236, 0) 66%),
-    radial-gradient(circle at 38% 70%, rgba(227, 242, 234, 0.6), rgba(227, 242, 234, 0) 55%);
+    radial-gradient(circle at 50% 44%, var(--wash-mint-strong), transparent 66%),
+    radial-gradient(circle at 38% 70%, var(--wash-green-soft), transparent 55%);
   content: "";
   pointer-events: none;
 }
@@ -415,11 +593,9 @@ h3 {
   margin: 0;
   border-radius: 44px;
   padding: 10px;
+  /* Корпус телефона — «физический» объект, одинаковый в обеих темах */
   background: linear-gradient(160deg, #29352f, #161e1a 58%, #101613);
-  box-shadow:
-    0 30px 70px rgba(20, 42, 37, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.14),
-    0 0 0 1px rgba(20, 42, 37, 0.4);
+  box-shadow: var(--phone-shadow);
 }
 
 .phone-android__screen {
@@ -473,7 +649,7 @@ h3 {
   border: 1px solid var(--line);
   border-radius: var(--radius-s);
   padding: 12px 16px;
-  background: var(--surface);
+  background: var(--surface-raised);
   box-shadow: var(--shadow);
   color: var(--ink);
   font-size: 14px;
@@ -538,9 +714,9 @@ h3 {
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(circle 560px at 82% 30%, rgba(223, 240, 236, 0.85), transparent 70%),
-    radial-gradient(circle 420px at 78% 74%, rgba(227, 242, 234, 0.55), transparent 68%),
-    linear-gradient(180deg, #edf3f0, #eaf1ed);
+    radial-gradient(circle 560px at 82% 30%, var(--wash-mint-strong), transparent 70%),
+    radial-gradient(circle 420px at 78% 74%, var(--wash-green-soft), transparent 68%),
+    linear-gradient(180deg, var(--story-grad-a), var(--story-grad-b));
   content: "";
   pointer-events: none;
 }
@@ -553,7 +729,7 @@ h3 {
   background-image: var(--med-pattern);
   background-size: 300px 300px;
   content: "";
-  opacity: 0.02;
+  opacity: var(--pattern-opacity);
   pointer-events: none;
   -webkit-mask-image: linear-gradient(90deg, #000 0 4.5%, transparent 12% 88%, #000 95.5% 100%);
   mask-image: linear-gradient(90deg, #000 0 4.5%, transparent 12% 88%, #000 95.5% 100%);
@@ -720,7 +896,7 @@ h3 {
   height: 64px;
   place-items: center;
   overflow: hidden;
-  border: 2px dashed rgba(14, 107, 102, 0.55);
+  border: 2px dashed var(--scan-dash);
   border-radius: 12px;
   background: var(--surface);
 }
@@ -739,7 +915,7 @@ h3 {
   height: 2px;
   border-radius: 999px;
   background: var(--brand);
-  box-shadow: 0 0 0 1px rgba(14, 107, 102, 0.12);
+  box-shadow: 0 0 0 1px var(--scan-line-halo);
   opacity: 0.5;
 }
 
@@ -940,7 +1116,7 @@ h3 {
 }
 
 .health-chart__label text {
-  fill: #ffffff;
+  fill: var(--on-brand);
   font-family: inherit;
   font-size: 12px;
   font-weight: 700;
@@ -1093,8 +1269,8 @@ h3 {
   margin: 0;
   padding: 96px max(16px, calc(50% - 590px)) 112px;
   background:
-    radial-gradient(circle at 92% 8%, rgba(223, 240, 236, 0.55), transparent 40%),
-    linear-gradient(180deg, var(--bg), #f0f5f2 78%);
+    radial-gradient(circle at 92% 8%, var(--wash-mint-soft), transparent 40%),
+    linear-gradient(180deg, var(--bg), var(--extras-grad) 78%);
 }
 
 .extras__grid {
@@ -1367,7 +1543,7 @@ h3 {
   margin: 0;
   padding: 96px max(16px, calc(50% - 590px)) 72px;
   background:
-    radial-gradient(circle at 8% 18%, rgba(227, 242, 234, 0.8), transparent 44%),
+    radial-gradient(circle at 8% 18%, var(--wash-green-strong), transparent 44%),
     var(--bg);
 }
 
@@ -1414,7 +1590,7 @@ h3 {
   color: var(--brand-strong);
   font-weight: 700;
   text-decoration: underline;
-  text-decoration-color: rgba(14, 107, 102, 0.35);
+  text-decoration-color: var(--link-underline);
   text-underline-offset: 3px;
 }
 
@@ -1443,8 +1619,8 @@ h3 {
   z-index: -1;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 50% 46%, rgba(223, 240, 236, 0.9), rgba(223, 240, 236, 0) 62%),
-    radial-gradient(circle at 34% 68%, rgba(227, 242, 234, 0.5), rgba(227, 242, 234, 0) 52%);
+    radial-gradient(circle at 50% 46%, var(--wash-mint-strong), transparent 62%),
+    radial-gradient(circle at 34% 68%, var(--wash-green-soft), transparent 52%);
   content: "";
   pointer-events: none;
 }
@@ -1457,7 +1633,7 @@ h3 {
   background-image: var(--med-pattern);
   background-size: 260px 260px;
   content: "";
-  opacity: 0.025;
+  opacity: var(--pattern-opacity);
   pointer-events: none;
   -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent 32%, #000 48% 60%, transparent 76%);
   mask-image: radial-gradient(circle at 50% 50%, transparent 32%, #000 48% 60%, transparent 76%);
@@ -1557,7 +1733,7 @@ h3 {
   border: 1px solid var(--line);
   border-radius: var(--radius-m);
   padding: 12px 16px;
-  background: var(--surface);
+  background: var(--surface-raised);
   box-shadow: var(--shadow);
 }
 
@@ -1590,7 +1766,7 @@ h3 {
   font-weight: 700;
   overflow-wrap: anywhere;
   text-decoration: underline;
-  text-decoration-color: rgba(14, 107, 102, 0.35);
+  text-decoration-color: var(--link-underline);
   text-underline-offset: 3px;
 }
 
@@ -1605,7 +1781,7 @@ h3 {
   border-radius: var(--radius-s);
   padding: 0 14px;
   background: var(--brand);
-  color: #ffffff;
+  color: var(--on-brand);
   cursor: pointer;
   font: inherit;
   font-size: 13px;
@@ -1705,7 +1881,7 @@ h3 {
   color: var(--brand-strong);
   font-weight: 700;
   text-decoration: underline;
-  text-decoration-color: rgba(14, 107, 102, 0.35);
+  text-decoration-color: var(--link-underline);
   text-underline-offset: 3px;
 }
 
@@ -1822,12 +1998,28 @@ h3 {
 
 @media (max-width: 720px) {
   .site-header {
-    grid-template-columns: auto auto;
-    justify-content: space-between;
+    grid-template-columns: minmax(0, 1fr) 44px 44px;
+    gap: 10px;
     width: min(100% - 24px, 1180px);
     min-height: 60px;
     margin-bottom: -72px;
     padding-inline: 10px 8px;
+  }
+
+  .theme-toggle {
+    grid-column: 2;
+  }
+
+  .nav-toggle {
+    grid-row: 1;
+    grid-column: 3;
+  }
+
+  /* .nav ниже становится position: absolute; сбрасываем grid-привязку,
+     чтобы containing block остался padding box шапки (right: 0 — от края) */
+  .nav {
+    grid-row: auto;
+    grid-column: auto;
   }
 
   .site-brand img {
@@ -1852,7 +2044,7 @@ h3 {
     border: 1px solid var(--line);
     border-radius: 16px;
     padding: 6px;
-    background: var(--surface);
+    background: var(--surface-raised);
     box-shadow: var(--shadow);
     overflow: hidden;
     opacity: 0;
@@ -2046,6 +2238,52 @@ h3 {
   .cookie-consent__actions {
     grid-template-columns: 1fr;
   }
+}
+
+/* ---------- Переход между темами ----------
+   Класс .theme-switching вешается на <html> контроллером на ~250 мс только
+   при ручном/системном переключении. Ограничен тематизируемыми компонентами:
+   не трогает transform/opacity (GSAP), изображения и экраны приложения. */
+
+html.theme-switching body,
+html.theme-switching .site-header,
+html.theme-switching .site-brand,
+html.theme-switching .nav a,
+html.theme-switching .nav-toggle,
+html.theme-switching .theme-toggle,
+html.theme-switching .button,
+html.theme-switching .eyebrow,
+html.theme-switching .scene__eyebrow,
+html.theme-switching .float-card,
+html.theme-switching .scene__card,
+html.theme-switching .stock-card,
+html.theme-switching .status-chip,
+html.theme-switching .drug-card__badge,
+html.theme-switching .notify-card__icon,
+html.theme-switching .scan-card__frame,
+html.theme-switching .course-progress__bar,
+html.theme-switching .extra,
+html.theme-switching .screen-tile,
+html.theme-switching .download,
+html.theme-switching .trust,
+html.theme-switching .trust__icon,
+html.theme-switching .extras,
+html.theme-switching .story__rail-caption,
+html.theme-switching .cookie-consent,
+html.theme-switching .cookie-consent__button,
+html.theme-switching .legal-grid a,
+html.theme-switching .legal-doc,
+html.theme-switching .site-footer {
+  transition: background-color 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+}
+
+html.theme-switching .health-chart__grid,
+html.theme-switching .health-chart__line,
+html.theme-switching .health-chart__dots circle,
+html.theme-switching .health-chart__label rect,
+html.theme-switching .health-chart__label text,
+html.theme-switching .scan-card__code {
+  transition: fill 0.22s ease, stroke 0.22s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
