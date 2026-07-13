@@ -27,6 +27,7 @@
       ].filter(Boolean);
 
       let introPlayed = false;
+      let introRequested = false;
 
       /* Заголовок: оборачиваем существующие визуальные строки в блоки,
          без разбиения на буквы. Разбиение только по обычным пробелам,
@@ -73,6 +74,13 @@
           defaults: { ease: "power2.out" },
           onComplete: () => {
             introPlayed = true;
+            /* Подстраховка: staggered .from() изредка оставляет остаточный
+               transform на одном из целевых элементов (наблюдалось на CTA).
+               Явно снимаем transform у всех участников интро, чтобы финальное
+               состояние гарантированно совпадало с исходной вёрсткой. */
+            gsap.set([...lines, ...copySequence, phone, ...cards].filter(Boolean), {
+              clearProps: "transform",
+            });
           },
         });
 
@@ -163,7 +171,14 @@
              если нет — H1 анимируется целиком (без сплита, без спанов),
              и естественный перенос сохранится, когда шрифт всё же придёт. */
           let cancelled = false;
-          if (!introPlayed) {
+          /* gsap.matchMedia иногда вызывает контекст-колбэк дважды подряд для
+             одних и тех же условий при первой загрузке (без cleanup между
+             вызовами) — introRequested гарантирует, что интро планируется
+             только один раз за всё время жизни страницы, иначе два таймлайна
+             конкурируют за одни и те же элементы и застревают в начальном
+             состоянии transform. */
+          if (!introRequested) {
+            introRequested = true;
             const supportsFontCheck = !!(document.fonts && typeof document.fonts.check === "function");
             const fontsReady = supportsFontCheck ? document.fonts.ready : Promise.resolve();
             const timeout = new Promise((resolve) => window.setTimeout(resolve, 300));
