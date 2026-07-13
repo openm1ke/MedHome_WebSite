@@ -298,6 +298,36 @@
         4: initHealthChart(),
       };
 
+      /* Статичные конечные состояния тех же эффектов — без движения,
+         для desktop + prefers-reduced-motion: reduce. Карточка всё ещё
+         показывает объяснение возможности, просто без анимации. */
+      const setScanStatic = () => {
+        const line = story.querySelector(".scan-card__line");
+        if (line) gsap.set(line, { top: "50%", opacity: 0.5 });
+      };
+      const setCourseProgressStatic = () => {
+        const notify = story.querySelector(".notify-card");
+        const fill = story.querySelector(".course-progress__fill");
+        const label = story.querySelector(".course-progress__label");
+        if (notify) gsap.set(notify, { y: 0, autoAlpha: 1 });
+        if (label) gsap.set(label, { autoAlpha: 1 });
+        if (fill) gsap.set(fill, { scaleX: 1 });
+      };
+      const setHealthChartStatic = () => {
+        const line = story.querySelector("[data-chart-line]");
+        const dotsGroup = story.querySelector("[data-chart-dots]");
+        const label = story.querySelector("[data-chart-label]");
+        if (!line || !dotsGroup) return;
+        gsap.set(line, { clearProps: "strokeDasharray,strokeDashoffset" });
+        gsap.set([...dotsGroup.querySelectorAll("circle")], { scale: 1, transformOrigin: "50% 50%" });
+        if (label) gsap.set(label, { autoAlpha: 1, y: 0 });
+      };
+      const sceneEffectsStatic = {
+        1: setScanStatic,
+        2: setCourseProgressStatic,
+        4: setHealthChartStatic,
+      };
+
       /* Появление/скрытие карточки сцены; overwrite защищает от быстрой прокрутки */
       const animateSceneCard = (index, active) => {
         const card = cards[index];
@@ -311,6 +341,19 @@
           sceneEffects[index]?.();
         } else {
           gsap.to(card, { autoAlpha: 0, duration: 0.2, ease: "power1.out", overwrite: "auto" });
+        }
+      };
+
+      /* Reduced-motion эквивалент: только короткий fade, без y/scale и без
+         анимации самих эффектов — их конечное состояние проставляется сразу. */
+      const animateSceneCardReduced = (index, active) => {
+        const card = cards[index];
+        if (!card) return;
+        if (active) {
+          gsap.to(card, { autoAlpha: 1, duration: 0.15, overwrite: "auto" });
+          sceneEffectsStatic[index]?.();
+        } else {
+          gsap.to(card, { autoAlpha: 0, duration: 0.15, overwrite: "auto" });
         }
       };
 
@@ -351,6 +394,16 @@
         );
       };
 
+      /* Reduced-motion: только opacity, без scale */
+      const setPhoneScreenReduced = (index) => {
+        if (index === currentScreen || !layers[index]) return;
+        const prev = layers[currentScreen];
+        const next = layers[index];
+        currentScreen = index;
+        gsap.to(prev, { autoAlpha: 0, duration: 0.15, overwrite: "auto" });
+        gsap.to(next, { autoAlpha: 1, duration: 0.15, overwrite: "auto" });
+      };
+
       const updateStoryProgress = (index) => {
         dots.forEach((dot, i) => dot.classList.toggle("is-active", i === index));
         if (caption && sceneNames[index] && caption.textContent !== sceneNames[index]) {
@@ -370,38 +423,31 @@
         updateStoryProgress(index);
       };
 
-      const createSceneTrigger = (scene, index) =>
+      const activateSceneReduced = (index) => {
+        scenes.forEach((scene, i) => {
+          const isActive = i === index;
+          const wasActive = scene.classList.contains("is-active");
+          scene.classList.toggle("is-active", isActive);
+          if (isActive !== wasActive) animateSceneCardReduced(i, isActive);
+        });
+        setPhoneScreenReduced(index);
+        updateStoryProgress(index);
+      };
+
+      const createSceneTrigger = (scene, index, onActivate) =>
         ScrollTrigger.create({
           trigger: scene,
           start: "top 55%",
           end: "bottom 55%",
           onToggle: (self) => {
-            if (self.isActive) activateScene(index);
+            if (self.isActive) onActivate(index);
           },
         });
 
-      /* Mobile/tablet/reduced: статичная вертикальная последовательность.
-         Базовая разметка и CSS уже показывают всё — JS ничего не прячет. */
+      /* Mobile/tablet/no-JS/недоступный ScrollTrigger: статичная вертикальная
+         последовательность. Базовая разметка и CSS уже показывают всё — JS
+         ничего не прячет. */
       const initMobileStory = () => {};
-
-      const initDesktopStory = () => {
-        story.classList.add("story--js");
-        gsap.set(layers, { autoAlpha: 0 });
-        gsap.set(layers[0], { autoAlpha: 1 });
-        currentScreen = 0;
-
-        const triggers = scenes.map((scene, index) => createSceneTrigger(scene, index));
-        ScrollTrigger.refresh();
-
-        const activeIndex = Math.max(
-          triggers.findIndex((trigger) => trigger.isActive),
-          0
-        );
-        initSceneCards(activeIndex);
-        activateScene(activeIndex);
-
-        return destroyStory(triggers);
-      };
 
       const destroyStory = (triggers) => () => {
         triggers.forEach((trigger) => trigger.kill());
@@ -414,6 +460,41 @@
         currentScreen = 0;
       };
 
+      /* Общий каркас desktop-инициализации: sticky-композиция + ScrollTrigger
+         на каждую сцену. onActivate отличается для полной анимации и для
+         prefers-reduced-motion: reduce (без scrub/parallax/scale/x-y). */
+      const initDesktopStoryWith = (onActivate, label) => {
+        let triggers = [];
+        try {
+          story.classList.add("story--js");
+          gsap.set(layers, { autoAlpha: 0 });
+          gsap.set(layers[0], { autoAlpha: 1 });
+          currentScreen = 0;
+
+          triggers = scenes.map((scene, index) => createSceneTrigger(scene, index, onActivate));
+          ScrollTrigger.refresh();
+
+          const activeIndex = Math.max(
+            triggers.findIndex((trigger) => trigger.isActive),
+            0
+          );
+          initSceneCards(activeIndex);
+          onActivate(activeIndex);
+
+          return destroyStory(triggers);
+        } catch (error) {
+          /* Неполная инициализация (сцена без карточки, гонка с layout и т.п.)
+             не должна оставлять story в промежуточном состоянии: откатываем
+             всё, что успело создаться, и возвращаемся к линейному fallback. */
+          console.error(`[story] ${label} init failed, falling back to linear layout`, error);
+          destroyStory(triggers)();
+          return undefined;
+        }
+      };
+
+      const initDesktopStory = () => initDesktopStoryWith(activateScene, "desktop");
+      const initDesktopStoryReduced = () => initDesktopStoryWith(activateSceneReduced, "desktop reduced-motion");
+
       mm.add(
         {
           reduce: "(prefers-reduced-motion: reduce)",
@@ -421,11 +502,11 @@
         },
         (context) => {
           const { reduce, desktop } = context.conditions;
-          if (reduce || !desktop) {
+          if (!desktop) {
             initMobileStory();
             return;
           }
-          return initDesktopStory();
+          return reduce ? initDesktopStoryReduced() : initDesktopStory();
         }
       );
     };
@@ -467,9 +548,20 @@
       });
     };
 
-    initHero();
-    initStory();
-    initLowerReveals();
+    /* Каждый блок инициализации независим: исключение в одном (например,
+       в hero) не должно молча блокировать остальные — иначе story
+       выглядит как «fallback», хотя на деле просто не была вызвана. */
+    const safeInit = (fn, label) => {
+      try {
+        fn();
+      } catch (error) {
+        console.error(`[animations] ${label} init failed`, error);
+      }
+    };
+
+    safeInit(initHero, "hero");
+    safeInit(initStory, "story");
+    safeInit(initLowerReveals, "lowerReveals");
 
     const destroyAnimations = () => {
       mm.revert();
