@@ -124,12 +124,12 @@
   };
 
   /* Контроллер темы. Начальное значение data-theme уже выставил theme-init.js
-     (до первой отрисовки); здесь — переключатель, сохранение выбора,
-     слежение за системной темой и синхронизация между вкладками. */
+     (до первой отрисовки); здесь — переключатель, сохранение выбора и
+     синхронизация между вкладками. Тема по умолчанию — dark; системная
+     prefers-color-scheme на выбор темы не влияет. */
   const initThemeToggle = () => {
     const root = document.documentElement;
     const toggle = document.querySelector("[data-theme-toggle]");
-    const media = window.matchMedia("(prefers-color-scheme: dark)");
     let switchTimer;
 
     const getSavedTheme = () => {
@@ -170,12 +170,13 @@
     };
 
     /* Fail-safe: если theme-init.js не загрузился, data-theme не выставлен —
-       восстанавливаем тему здесь (сохранённый выбор → системная) без записи
-       в localStorage; applyTheme вернёт скрытый до этого переключатель. */
+       восстанавливаем тему здесь (сохранённый выбор → dark по умолчанию)
+       без записи в localStorage; applyTheme вернёт скрытый до этого
+       переключатель. */
     if (root.dataset.theme === "dark" || root.dataset.theme === "light") {
       syncToggle(root.dataset.theme);
     } else {
-      applyTheme(getSavedTheme() ?? (media.matches ? "dark" : "light"));
+      applyTheme(getSavedTheme() ?? "dark");
     }
 
     toggle?.addEventListener("click", () => {
@@ -184,22 +185,12 @@
       saveTheme(next);
     });
 
-    /* Системная тема применяется, пока пользователь не сделал ручной выбор */
-    const onSystemChange = (event) => {
-      if (getSavedTheme()) return;
-      applyTheme(event.matches ? "dark" : "light", { animate: true });
-    };
-
-    if (typeof media.addEventListener === "function") {
-      media.addEventListener("change", onSystemChange);
-    } else if (typeof media.addListener === "function") {
-      media.addListener(onSystemChange);
-    }
-
-    /* Синхронизация между открытыми вкладками сайта */
+    /* Синхронизация между открытыми вкладками сайта: ручной выбор в другой
+       вкладке применяется здесь же; очистка ключа возвращает обе вкладки
+       к теме по умолчанию (dark), а не к системной. */
     window.addEventListener("storage", (event) => {
       if (event.key !== THEME_KEY) return;
-      applyTheme(getSavedTheme() ?? (media.matches ? "dark" : "light"));
+      applyTheme(getSavedTheme() ?? "dark");
     });
   };
 

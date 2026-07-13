@@ -1,5 +1,7 @@
 /* Устанавливает тему до первой отрисовки (подключается в <head> ДО styles.css).
-   Приоритет: сохранённый выбор (localStorage "medhome_theme") → системная тема.
+   Приоритет: сохранённый выбор (localStorage "medhome_theme") → тёмная тема
+   по умолчанию (dark — тема по умолчанию для новых пользователей, системная
+   prefers-color-scheme больше не влияет на выбор темы).
    CSP: inline-скрипты запрещены, поэтому файл отдельный и локальный.
    Логика переключения — в script.js (initThemeToggle). */
 (() => {
@@ -13,11 +15,7 @@
   }
 
   if (theme !== "dark" && theme !== "light") {
-    try {
-      theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    } catch {
-      theme = "light";
-    }
+    theme = "dark";
   }
 
   root.dataset.theme = theme;

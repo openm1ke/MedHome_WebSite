@@ -57,8 +57,8 @@
 }
 
 /* ---------- Тёмная тема ----------
-   KEEP IN SYNC: тот же набор значений продублирован ниже в
-   @media (prefers-color-scheme: dark) для работы без JavaScript. */
+   KEEP IN SYNC: тот же набор значений продублирован ниже в no-JS fallback
+   (:root:not([data-theme])) для работы без JavaScript. */
 [data-theme="dark"] {
   color-scheme: dark;
   --bg: #0c1416;
@@ -106,58 +106,57 @@
   --med-pattern: url("data:image/svg+xml,%3Csvg width='300' height='300' viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%2356c2b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='44' cy='44' r='20'/%3E%3Cpath d='M30 58 58 30'/%3E%3Cpath d='M112 24h42a18 18 0 0 1 0 36h-42a18 18 0 0 1 0-36Z'/%3E%3Cpath d='M133 24v36'/%3E%3Cpath d='M222 24h28v48h-28zM218 24h36M222 72h28'/%3E%3Cpath d='M36 124h18v-18h18v18h18v18H72v18H54v-18H36z'/%3E%3Cpath d='M128 112c18 18 18 42 0 60-18-18-18-42 0-60Z'/%3E%3Cpath d='M218 118h36a18 18 0 0 1 0 36h-36a18 18 0 0 1 0-36Z'/%3E%3Cpath d='M236 118v36'/%3E%3Cpath d='M36 224h44v28H36z'/%3E%3Cpath d='M112 216h42v50h-42zM112 232h42'/%3E%3Cpath d='M214 232h50M224 218l-20 28 24 8'/%3E%3Ccircle cx='98' cy='96' r='4'/%3E%3Ccircle cx='108' cy='106' r='4'/%3E%3Ccircle cx='88' cy='108' r='4'/%3E%3Cpath d='M246 204v42M230 220h32M238 212h16'/%3E%3C/g%3E%3C/svg%3E");
 }
 
-/* No-JS fallback: без data-theme следуем системной теме.
+/* No-JS fallback: без data-theme используем тёмную тему по умолчанию —
+   безусловно, без учёта prefers-color-scheme.
    KEEP IN SYNC с блоком [data-theme="dark"] выше. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    color-scheme: dark;
-    --bg: #0c1416;
-    --bg-wash: #101a1d;
-    --surface: #142125;
-    --surface-raised: #1a2a2f;
-    --ink: #eaf3f2;
-    --ink-soft: #a9b8b8;
-    --line: rgba(234, 243, 242, 0.12);
-    --brand: #56c2b8;
-    --brand-strong: #7ad7cf;
-    --brand-soft: #143634;
-    --on-brand: #072220;
-    --ok: #6cc79a;
-    --ok-soft: #15342a;
-    --amber: #d9a95e;
-    --amber-soft: #372b17;
-    --coral: #e2919a;
-    --coral-soft: #3a2226;
-    --petrol: #124c47;
-    --petrol-deep: #0a2624;
-    --shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
-    --shadow-soft: 0 8px 22px rgba(0, 0, 0, 0.35);
-    --link-underline: rgba(86, 194, 184, 0.4);
-    --header-bg: rgba(20, 33, 37, 0.82);
-    --header-bg-scrolled: rgba(20, 33, 37, 0.94);
-    --focus-ring: #7ad7cf;
-    --btn-primary-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
-    --phone-shadow:
-      0 30px 70px rgba(0, 0, 0, 0.55),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1),
-      0 0 0 1px rgba(0, 0, 0, 0.6);
-    --scan-dash: rgba(86, 194, 184, 0.55);
-    --scan-line-halo: rgba(86, 194, 184, 0.2);
-    --pattern-opacity: 0.025;
-    --glow-teal: rgba(86, 194, 184, 0.09);
-    --glow-green: rgba(94, 196, 180, 0.05);
-    --wash-mint-strong: rgba(86, 194, 184, 0.1);
-    --wash-mint-soft: rgba(86, 194, 184, 0.05);
-    --wash-green-strong: rgba(94, 196, 180, 0.07);
-    --wash-green-soft: rgba(94, 196, 180, 0.04);
-    --story-grad-a: #101c20;
-    --story-grad-b: #0d1719;
-    --extras-grad: #0f1a1c;
-    --med-pattern: url("data:image/svg+xml,%3Csvg width='300' height='300' viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%2356c2b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='44' cy='44' r='20'/%3E%3Cpath d='M30 58 58 30'/%3E%3Cpath d='M112 24h42a18 18 0 0 1 0 36h-42a18 18 0 0 1 0-36Z'/%3E%3Cpath d='M133 24v36'/%3E%3Cpath d='M222 24h28v48h-28zM218 24h36M222 72h28'/%3E%3Cpath d='M36 124h18v-18h18v18h18v18H72v18H54v-18H36z'/%3E%3Cpath d='M128 112c18 18 18 42 0 60-18-18-18-42 0-60Z'/%3E%3Cpath d='M218 118h36a18 18 0 0 1 0 36h-36a18 18 0 0 1 0-36Z'/%3E%3Cpath d='M236 118v36'/%3E%3Cpath d='M36 224h44v28H36z'/%3E%3Cpath d='M112 216h42v50h-42zM112 232h42'/%3E%3Cpath d='M214 232h50M224 218l-20 28 24 8'/%3E%3Ccircle cx='98' cy='96' r='4'/%3E%3Ccircle cx='108' cy='106' r='4'/%3E%3Ccircle cx='88' cy='108' r='4'/%3E%3Cpath d='M246 204v42M230 220h32M238 212h16'/%3E%3C/g%3E%3C/svg%3E");
-  }
+:root:not([data-theme]) {
+  color-scheme: dark;
+  --bg: #0c1416;
+  --bg-wash: #101a1d;
+  --surface: #142125;
+  --surface-raised: #1a2a2f;
+  --ink: #eaf3f2;
+  --ink-soft: #a9b8b8;
+  --line: rgba(234, 243, 242, 0.12);
+  --brand: #56c2b8;
+  --brand-strong: #7ad7cf;
+  --brand-soft: #143634;
+  --on-brand: #072220;
+  --ok: #6cc79a;
+  --ok-soft: #15342a;
+  --amber: #d9a95e;
+  --amber-soft: #372b17;
+  --coral: #e2919a;
+  --coral-soft: #3a2226;
+  --petrol: #124c47;
+  --petrol-deep: #0a2624;
+  --shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  --shadow-soft: 0 8px 22px rgba(0, 0, 0, 0.35);
+  --link-underline: rgba(86, 194, 184, 0.4);
+  --header-bg: rgba(20, 33, 37, 0.82);
+  --header-bg-scrolled: rgba(20, 33, 37, 0.94);
+  --focus-ring: #7ad7cf;
+  --btn-primary-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+  --phone-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.6);
+  --scan-dash: rgba(86, 194, 184, 0.55);
+  --scan-line-halo: rgba(86, 194, 184, 0.2);
+  --pattern-opacity: 0.025;
+  --glow-teal: rgba(86, 194, 184, 0.09);
+  --glow-green: rgba(94, 196, 180, 0.05);
+  --wash-mint-strong: rgba(86, 194, 184, 0.1);
+  --wash-mint-soft: rgba(86, 194, 184, 0.05);
+  --wash-green-strong: rgba(94, 196, 180, 0.07);
+  --wash-green-soft: rgba(94, 196, 180, 0.04);
+  --story-grad-a: #101c20;
+  --story-grad-b: #0d1719;
+  --extras-grad: #0f1a1c;
+  --med-pattern: url("data:image/svg+xml,%3Csvg width='300' height='300' viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%2356c2b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='44' cy='44' r='20'/%3E%3Cpath d='M30 58 58 30'/%3E%3Cpath d='M112 24h42a18 18 0 0 1 0 36h-42a18 18 0 0 1 0-36Z'/%3E%3Cpath d='M133 24v36'/%3E%3Cpath d='M222 24h28v48h-28zM218 24h36M222 72h28'/%3E%3Cpath d='M36 124h18v-18h18v18h18v18H72v18H54v-18H36z'/%3E%3Cpath d='M128 112c18 18 18 42 0 60-18-18-18-42 0-60Z'/%3E%3Cpath d='M218 118h36a18 18 0 0 1 0 36h-36a18 18 0 0 1 0-36Z'/%3E%3Cpath d='M236 118v36'/%3E%3Cpath d='M36 224h44v28H36z'/%3E%3Cpath d='M112 216h42v50h-42zM112 232h42'/%3E%3Cpath d='M214 232h50M224 218l-20 28 24 8'/%3E%3Ccircle cx='98' cy='96' r='4'/%3E%3Ccircle cx='108' cy='106' r='4'/%3E%3Ccircle cx='88' cy='108' r='4'/%3E%3Cpath d='M246 204v42M230 220h32M238 212h16'/%3E%3C/g%3E%3C/svg%3E");
 }
 
-/* Без JS переключатель темы не работает — скрываем его, тема идёт от системы */
+/* Без JS переключатель темы не работает — скрываем его, тема всегда тёмная */
 :root:not([data-theme]) .theme-toggle {
   display: none;
 }
