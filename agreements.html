@@ -33,7 +33,8 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260713-0001" />
+    <script src="theme-init.js?v=20260713-0001"></script>
+    <link rel="stylesheet" href="styles.css?v=20260713-0002" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Перейти к содержанию</a>
@@ -42,6 +43,15 @@
         <img src="assets/app-logo.png" alt="" aria-hidden="true" width="192" height="192" />
         <span>МедДом</span>
       </a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Включить тёмную тему">
+        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z" />
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+        </svg>
+      </button>
       <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Открыть меню" data-nav-toggle>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -88,6 +98,6 @@
         <button class="cookie-consent__button" type="button" data-cookie-accept>Принять</button>
       </div>
     </section>
-    <script src="script.js?v=20260703-0002"></script>
+    <script src="script.js?v=20260713-0003"></script>
   </body>
 </html>
