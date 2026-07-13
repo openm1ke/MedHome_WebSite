@@ -1203,8 +1203,10 @@ h3 {
   text-transform: uppercase;
 }
 
-/* Desktop-раскладка активируется ТОЛЬКО когда JS добавил .story--js */
-@media (min-width: 1000px) and (prefers-reduced-motion: no-preference) {
+/* Desktop-раскладка активируется ТОЛЬКО когда JS добавил .story--js.
+   Не гейтим на prefers-reduced-motion: no-preference — при reduce JS
+   всё равно строит sticky-композицию, только без scrub/scale/x-y. */
+@media (min-width: 1000px) {
   .story--js .story__layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 400px;
